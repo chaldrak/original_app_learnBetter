@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
   root 'home#index'
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+  if Rails.env.development?
+    mount LetterOpenerWeb::Engine, at: "/inbox"
+  end
+
+  devise_for :users, path: 'auth', path_names: { sign_in: 'login', sign_out: 'logout', password: 'secret', confirmation: 'verification', unlock: 'unblock', sign_up: 'register', sign_out: 'logout' }
+
 end
