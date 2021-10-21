@@ -6,6 +6,18 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
       ## Database authenticatable
       t.string :email,              null: false, default: ""
       t.string :encrypted_password, null: false, default: ""
+      t.string :provider, null: false, default: ""
+      t.string :uid, null: false, default: ""
+      t.string :name, null: false
+      t.string :city
+      t.string :picture
+      t.string :university
+      t.string :faculty
+      t.string :sector
+      t.integer :contact
+      t.boolean :is_admin, null: false
+      
+
 
       ## Recoverable
       t.string   :reset_password_token
@@ -15,11 +27,11 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
       t.datetime :remember_created_at
 
       ## Trackable
-      # t.integer  :sign_in_count, default: 0, null: false
-      # t.datetime :current_sign_in_at
-      # t.datetime :last_sign_in_at
-      # t.inet     :current_sign_in_ip
-      # t.inet     :last_sign_in_ip
+      t.integer  :sign_in_count, default: 0, null: false
+      t.datetime :current_sign_in_at
+      t.datetime :last_sign_in_at
+      t.inet     :current_sign_in_ip
+      t.inet     :last_sign_in_ip
 
       ## Confirmable
       t.string   :confirmation_token
@@ -39,6 +51,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
     add_index :users, :email,                unique: true
     add_index :users, :reset_password_token, unique: true
     add_index :users, :confirmation_token,   unique: true
+    add_index :users, [:uid, :provider], unique: true
     # add_index :users, :unlock_token,         unique: true
   end
 end

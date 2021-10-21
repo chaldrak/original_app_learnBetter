@@ -3,10 +3,13 @@
     <div class="text-center">
         <img src="/img/lb.jpg" alt="logo" width="200px">
     </div>
-    <a href="#" class="border border-dark rounded-pill text-center w-100 btn btn-light mb-4">
+    <%= link_to user_google_omniauth_authorize_path, method: :post, class:"border border-dark rounded-pill text-center w-100 btn btn-light mb-4" do %>
         <i class="fab fa-google text-danger"></i> Log in with Google
-    </a>
-    <a href="#" class="border border-primary rounded-pill text-center w-100 btn btn-primary mb-4">
+    <% end %>
+    <%= link_to user_facebook_omniauth_authorize_path, method: :post, class:"border border-primary rounded-pill text-center w-100 btn btn-primary mb-4" do %>
+        <i class="fab fa-facebook text-light"></i> Log in with Facebook
+    <% end %>
+    <a href="" class="border border-primary rounded-pill text-center w-100 btn btn-primary mb-4">
         <i class="fab fa-facebook text-light"></i> Log in with Facebook
     </a>
     <div href="#" class="border border-dark rounded-3 p-4 w-100 mb-4">
@@ -37,3 +40,4 @@
     </div>
   </div>
 </div>
+<%= render "devise/shared/links" %>
