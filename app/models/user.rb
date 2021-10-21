@@ -7,6 +7,10 @@ class User < ApplicationRecord
 
   before_create :create_is_admin_default
 
+  validates :name, length: {minimum: 6, maximum: 20}
+  
+  
+
   def create_is_admin_default
     self.is_admin = false
     self.picture = Faker::Avatar.image(size: "100x100", format: "jpg")

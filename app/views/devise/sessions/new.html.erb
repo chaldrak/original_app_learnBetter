@@ -9,9 +9,6 @@
     <%= link_to user_facebook_omniauth_authorize_path, method: :post, class:"border border-primary rounded-pill text-center w-100 btn btn-primary mb-4" do %>
         <i class="fab fa-facebook text-light"></i> Log in with Facebook
     <% end %>
-    <a href="" class="border border-primary rounded-pill text-center w-100 btn btn-primary mb-4">
-        <i class="fab fa-facebook text-light"></i> Log in with Facebook
-    </a>
     <div href="#" class="border border-dark rounded-3 p-4 w-100 mb-4">
         <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
             <div class="mb-3">
@@ -40,4 +37,3 @@
     </div>
   </div>
 </div>
-<%= render "devise/shared/links" %>
