@@ -30,7 +30,7 @@
         <div>
           <h3><%= @question.title %></h3>
           <p>
-            Asked <span class="fw-bold me-2">today</span>  
+            Asked <span class="fw-bold me-2"><%= day_ago_converter(@question.created_at) %></span>  
             Viewed <span class="fw-bold">47 times</span>
           </p>
         </div><hr class="mt-2">

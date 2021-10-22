@@ -20,6 +20,17 @@ module QuestionsHelper
     end
   end
 
+  def day_ago_converter(date)
+    created_date = date.to_date
+    if created_date == Date.today
+      'today'
+    elsif created_date == Date.yesterday
+      'yesterday'
+    elsif Date.today - created_date > (1/1)
+      created_date.strftime("%F")
+    end
+  end
+
   def user_picture_is_mounted_or_no(user)
     if user.picture.class == String
       user.picture
