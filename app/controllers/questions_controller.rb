@@ -1,6 +1,6 @@
 class QuestionsController < ApplicationController
   before_action :set_question, only: %i[ show edit update destroy ]
-  before_action :authenticate_user!, only: %i[new create]
+  skip_before_action :authenticate_user!, only: %i[index show]
 
   # GET /questions or /questions.json
   def index
@@ -17,7 +17,7 @@ class QuestionsController < ApplicationController
   end
 
   def confirm
-    @question = Question.new(question_params)
+    @question = current_user.questions.build(question_params)
     render :new if @question.invalid?
   end
 
