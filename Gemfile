@@ -31,7 +31,8 @@ gem 'omniauth-rails_csrf_protection'
 gem 'faker'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
-
+gem 'carrierwave', '~> 2.0'
+gem 'cloudinary'
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 

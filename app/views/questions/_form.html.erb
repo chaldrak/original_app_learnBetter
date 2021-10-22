@@ -1,0 +1,13 @@
+<%= form_with(model: question, local: true) do |form| %>
+  <div class="field">
+    <%= form.label :picture %>
+    <!-- Au retour de l'écran de confirmation vers le nouvel écran de création, -->
+    <!-- Description pour afficher l'image téléchargée -->
+    <%= image_tag(@question.picture.url) if @question.picture && @question.picture.url %>
+    <%= form.file_field :picture %>
+    <%= form.hidden_field :picture_cache %>
+  </div>
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

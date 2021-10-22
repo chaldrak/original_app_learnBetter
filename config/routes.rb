@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :questions
+  get 'questions/index'
   root 'home#index'
 
   if Rails.env.development?
