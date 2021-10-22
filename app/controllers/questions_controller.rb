@@ -15,14 +15,18 @@ class QuestionsController < ApplicationController
     @question = Question.new
   end
 
+  def confirm
+    @question = Question.new(question_params)
+  end
+
   # GET /questions/1/edit
   def edit
   end
 
   # POST /questions or /questions.json
   def create
-    @question = Question.new(question_params)
-
+    @question = current_user.questions.build(question_params)
+    
     respond_to do |format|
       if @question.save
         format.html { redirect_to @question, notice: "Question was successfully created." }
@@ -64,6 +68,6 @@ class QuestionsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def question_params
-      params.require(:question).permit(:picture, :picture_cache)
+      params.require(:question).permit(:title, :content, :picture, :picture_cache)
     end
 end

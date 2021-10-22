@@ -1,7 +1,17 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
+  title: MyString
+  content: MyString
   picture: MyText
+  user: one
+  solved: false
+  answer_id: 1
 
 two:
+  title: MyString
+  content: MyString
   picture: MyText
+  user: two
+  solved: false
+  answer_id: 1

@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
-  resources :questions
-  get 'questions/index'
+  resources :questions do
+    collection do
+      post :confirm
+    end
+  end
+
   root 'home#index'
 
   if Rails.env.development?
