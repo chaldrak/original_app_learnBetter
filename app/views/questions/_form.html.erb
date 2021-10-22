@@ -1,34 +1,23 @@
-<%= form_with(model: question, local: true, url: choose_new_or_edit) do |form| %>
-  <% if question.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(question.errors.count, "error") %> prohibited this question from being saved:</h2>
-
-      <ul>
-      <% question.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title %>
+<%= form_with(model: question, local: true, url: choose_new_or_edit, class:"border p-3 shadow-lg") do |form| %>
+  <div id="emailHelp" class="form-text text-danger"><%= render "devise/shared/error_messages", resource: question %></div>
+  <div class="mb-3">
+    <%= form.label :title, class:"form-label fw-bold" %>
+    <%= form.text_field :title, class:"form-control", ariaDescribedby:"titleHelp", placeholder:"e.g. How to solve a differential equation ?" %>
+    <div id="titleHelp" class="form-text">Be specific and imagine you’re asking a question to another person</div>
   </div>
-
-  <div class="field">
-    <%= form.label :content %>
-    <%= form.text_field :content %>
-  </div>
-
-  <div class="field">
-    <%= form.label :picture %>
+  <div class="mb-3">
+    <%= form.label :choose_a_picture, class:"form-label fw-bold" %>
     <%= image_tag(@question.picture.url) if @question.picture && @question.picture.url %>
-    <%= form.file_field :picture %>
+    <%= form.file_field :picture, class:"form-control" %>
     <%= form.hidden_field :picture_cache %>
+    <%= form.hidden_field :user, value:"#{current_user}" %>
   </div>
+  <div class="mb-3">
+    <%= form.label :body, class:"form-label fw-bold" %>
+    <%= form.text_area :content, class:"form-control", ariaDescribedby:"body", rows:"3" %>
+    <div id="body" class="form-text">Include all the information someone would need to answer your question
 
-  <div class="actions">
-    <%= form.submit %>
+    </div>
   </div>
+  <%= form.submit "Review your question", class:"btn btn-primary" %>
 <% end %>

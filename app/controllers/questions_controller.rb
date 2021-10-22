@@ -1,5 +1,6 @@
 class QuestionsController < ApplicationController
   before_action :set_question, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!, only: %i[new create]
 
   # GET /questions or /questions.json
   def index
@@ -17,6 +18,7 @@ class QuestionsController < ApplicationController
 
   def confirm
     @question = Question.new(question_params)
+    render :new if @question.invalid?
   end
 
   # GET /questions/1/edit

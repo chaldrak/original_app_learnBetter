@@ -43,20 +43,20 @@ class User < ApplicationRecord
     end
     
     user = User.where("email= ?", auth.info.email).first
-    puts auth.info.picture
-    puts auth.info.name
-    puts auth.info.email
+
     if user
       return user
     else
-      where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
-        user.email = auth.info.email
-        user.password = Devise.friendly_token[0, 20]
-        user.name = auth.info.name
-        user.skip_confirmation!
-        user.uid = user.uid
-        user.provider = user.provider
-      end
+      user = User.new(
+        email: auth.info.email,
+        name: auth.info.name,
+        provider: auth.provider,
+        uid:      auth.uid,
+        password: Devise.friendly_token[0, 20],
+      )
+      user.skip_confirmation!
     end
+    user.save
+    user
   end
 end

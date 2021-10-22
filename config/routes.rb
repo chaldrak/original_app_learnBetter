@@ -5,7 +5,7 @@ Rails.application.routes.draw do
     end
   end
 
-  root 'home#index'
+  root 'questions#index'
 
   if Rails.env.development?
     mount LetterOpenerWeb::Engine, at: "/inbox"

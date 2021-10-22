@@ -1,10 +1,29 @@
-<h3>Confirmation</h3>
-<%= form_with(model: @question, local: true) do |form| %>
-  <%= form.hidden_field :title %>
-  <%= form.hidden_field :content %>
-  <%= form.hidden_field :picture_cache %>
-  <p>Title:<%= @question.title %></p>
-  <p>Content:<%= @question.content %></p>
-  <p>Image:<%= image_tag(@question.picture.url, width:"20%") if @question.picture && @question.picture.url %></p>
-  <%= form.submit  "Save" %>
-<% end %>
+<div class="middle" style="padding-top: 100px;overflow: auto;">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div>
+        <h3 class="mb-4">Review your question</h3>
+          <%= form_with(model: @question, local: true, class:"border p-3 shadow-lg") do |form| %>
+            <div class="mb-3">
+              <label for="title" class="form-label fw-bold">Title : </label>
+              <span><%= @question.title %></span>
+              <%= form.hidden_field :title %>
+            </div>
+            <div class="mb-3">
+              <label for="formFile" class="form-label fw-bold">Picture : </label>
+              <%= image_tag(@question.picture.url, width:"40%", alt:"picture") if @question.picture && @question.picture.url %>
+              <%= form.hidden_field :picture_cache %>
+            </div>
+            <div class="mb-3">
+              <label for="formBody" class="form-label fw-bold">Body : </label>
+              <p><%= @question.content %></p>
+              <%= form.hidden_field :content %>
+            </div>
+            <%= form.submit  "Post your question", class:"btn btn-primary" %>
+          <% end %>
+      </div>
+  </div>
+  <hr>
+  <!-- footer -->
+  <%= render "partials/footer" %>
+</div>

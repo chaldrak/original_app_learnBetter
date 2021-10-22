@@ -2,7 +2,7 @@ class Question < ApplicationRecord
 
   before_create :set_solved_as_false
 
-  belongs_to :user
+  belongs_to :user, optional: true
   mount_uploader :picture, ImageUploader
 
   validates :title, length: {minimum: 20}
