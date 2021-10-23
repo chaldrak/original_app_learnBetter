@@ -1,0 +1,46 @@
+<div class="row mb-2"></div><hr class="mt-2">
+<div class="row">
+  <div class="col-sm-1">
+    <p class="text-center">
+      <a href="#" class="btn"><i class="fas fa-sort-up h3 text-secondary"></i></a><br>
+      <span>10</span><br>
+      <a href="#" class="btn"><i class="fas fa-sort-down h3 text-secondary"></i></a><br>
+      <a href="#" class=""><i class="fas fa-check text-secondary"></i></a>
+    </p>
+  </div>
+  <div class="col-sm-11">
+    <p style="text-align: justify;">
+      <%= answer.content %> <br>
+
+      <% if answer.picture.present? %>
+        <a href="<%= answer.picture.url %>" class="nav-link" target="_blank" >
+          Show picture in another tab
+        </a>
+      <% end %>
+
+      <div class="row justify-content-between">
+        <div class="col-4">
+          <% if current_user==answer.user %>
+            <%= link_to "Edit", edit_question_answer_path(answer.question, answer), title:"edit answer", class:"me-2 text-decoration-none text-secondary" %>
+            <%= link_to "Delete", question_answer_path(answer.question, answer), method: :delete, title:"delete answer", class:"me-2 text-decoration-none text-danger", data: {confirm: "This deletion is irreversible. Do you want to continue ?" } %>
+          <% end %>
+        </div> 
+        <div class="col-4 border rounded-3 p-2" style="background-color: hsl(205deg 46% 92%); width: 30%;">
+          <p class="text-secondary mb-0">answered <%= time_ago_converter(answer.created_at) %> ago</p>
+          <%= image_tag user_picture_is_mounted_or_no(answer.user), width:"40px", alt:"#{answer.user.name}", class:"border border-secondary rounded-3 me-2" %>
+          <a href="#" class="text-decoration-none"><span><%= answer.user.name %></span></a>
+        </div>
+      </div>
+    </p>
+    <hr class="mt-2">
+    <p class="text-secondary" style="text-align: justify;">
+      Il n'a pas fait que survivre cinq siècles, mais s'est aussi adapté à la bureautique informatique, sans que son contenu n'en soit modifié. – <span><a href="#" class="text-decoration-none">user2021</a></span> <em class="text-dark">Jul 20 '18 at 14:54</em> <span>edit delete</span>
+    </p>
+    <hr class="mt-2">
+    <p class="text-secondary" style="text-align: justify;">
+      Il n'a pas fait que survivre cinq siècles, mais s'est aussi adapté à la bureautique informatique, sans que son contenu n'en soit modifié. – <span><a href="#" class="text-decoration-none">user99</a></span> <em class="text-dark">Jul 20 '18 at 14:54</em>
+    </p>
+    <hr class="mt-2">
+    <a href="" class="text-decoration-none">Add a comment</a>
+  </div>
+</div>

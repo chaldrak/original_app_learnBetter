@@ -1,0 +1,14 @@
+<p class="fw-bold mt-4 mb-2">Your Answer</p>
+<%= form_with(model: [@question, @question.answers.build], local: true) do |form| %>
+  <div id="emailHelp" class="form-text text-danger"><%= render "devise/shared/error_messages", resource: @answer %></div>
+  <div class="mb-3">
+    <%= form.label "Choose a picture", class:"form-label" %>
+    <%= image_tag(@answer.picture.url, width: "100%", class:"mb-3") if @answer.picture && @answer.picture.url %>
+    <%= form.file_field :picture, class:"form-control" %>
+    <%= form.hidden_field :picture_cache %>
+  </div>
+  <div class="mb-3">
+    <%= form.text_area :content, rows:"3", class:"form-control" %>
+  </div>
+  <%= form.submit "Post Your Answer", class:"btn btn-primary" %>
+<% end %>

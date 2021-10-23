@@ -23,6 +23,7 @@
       </div>
     </div>
   <!-- end Modal -->
+  
 
   <div class="middle" style="padding-top: 100px;overflow: auto;">
     <div class="container-fluid">
@@ -57,7 +58,7 @@
               <div class="row justify-content-between">
                 <div class="col-4">
                   <% if current_user==@question.user %>
-                    <a href="#" title="edit question" class="me-2 text-decoration-none text-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal1">
+                    <a href="#" title="edit question" class="me-2 text-decoration-none text-secondary" data-bs-toggle="modal" data-bs-target="#exampleModalEdit">
                       Edit
                     </a>
                     <%= link_to "Delete", question_path(@question), method: :delete, title:"delete question", class:"me-2 text-decoration-none text-danger", data: {confirm: "This deletion is irreversible. Do you want to continue ?" } %>
@@ -79,60 +80,16 @@
               Il n'a pas fait que survivre cinq siècles, mais s'est aussi adapté à la bureautique informatique, sans que son contenu n'en soit modifié. – <span><a href="#" class="text-decoration-none">user99</a></span> <em class="text-dark">Jul 20 '18 at 14:54</em>
             </p>
             <hr class="mt-2">
-            <a href="" class="text-decoration-none">Add a comment</a>
+            <a class="text-decoration-none" id="add_comment">Add a comment</a>
+            <p id="input" hidden><input type="text" name="comment"></p>
           </div>
       </div>
-      <p class="fw-bold mt-4">26 Answers</p>
-      <div class="row mb-2">
-      </div><hr class="mt-2">
-      <div class="row">
-        <div class="col-sm-1">
-          <p class="text-center">
-            <a href="#" class="btn"><i class="fas fa-sort-up h3 text-secondary"></i></a><br>
-            <span>10</span><br>
-            <a href="#" class="btn"><i class="fas fa-sort-down h3 text-secondary"></i></a><br>
-            <a href="#" class=""><i class="fas fa-check text-secondary"></i></a>
-          </p>
-        </div>
-        <div class="col-sm-11">
-          <p style="text-align: justify;">
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ab illo natus explicabo quidem eum, omnis nobis commodi ut aperiam aliquid quae cupiditate doloremque provident atque quisquam libero dolorem, nemo dolor. <br>
-            <div class="row justify-content-between">
-              <div class="col-4">
-                <a href="" class="me-2 text-decoration-none text-secondary">Edit</a>
-                <a href="" class="me-2 text-decoration-none text-danger">Delete</a>
-              </div> 
-              <div class="col-4 border rounded-3 p-2" style="background-color: hsl(205deg 46% 92%); width: 30%;">
-                <p class="text-secondary mb-0">answered 12 hours ago</p>
-                <img src="img/avatar.png" width="40px" alt="" class="border border-secondary rounded-3 me-2">
-                <a href="#" class="text-decoration-none"><span>user2021</span></a>
-              </div>
-            </div>
-          </p>
-          <hr class="mt-2">
-          <p class="text-secondary" style="text-align: justify;">
-            Il n'a pas fait que survivre cinq siècles, mais s'est aussi adapté à la bureautique informatique, sans que son contenu n'en soit modifié. – <span><a href="#" class="text-decoration-none">user2021</a></span> <em class="text-dark">Jul 20 '18 at 14:54</em> <span>edit delete</span>
-          </p>
-          <hr class="mt-2">
-          <p class="text-secondary" style="text-align: justify;">
-            Il n'a pas fait que survivre cinq siècles, mais s'est aussi adapté à la bureautique informatique, sans que son contenu n'en soit modifié. – <span><a href="#" class="text-decoration-none">user99</a></span> <em class="text-dark">Jul 20 '18 at 14:54</em>
-          </p>
-          <hr class="mt-2">
-          <a href="" class="text-decoration-none">Add a comment</a>
-        </div>
-      </div>
-      <p class="fw-bold mt-4 mb-2">Your Answer</p>
-      <form>
-        <div class="mb-3">
-          <label for="formFile" class="form-label">Choose a picture</label>
-          <input class="form-control" type="file" id="formFile">
-        </div>
-        <div class="mb-3">
-          <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-        </div>
-        <button type="submit" class="btn btn-primary">Post Your Answer</button>
-      </form>
+      
+      <p class="fw-bold mt-4"><%= @question.answers.count %> Answers</p>
+      <%= render @question.answers %>
+
     </div>
+    <%= render "answers/form" %>
     <hr>
     <!-- footer -->
     <%= render "partials/footer" %>

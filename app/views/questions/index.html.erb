@@ -20,9 +20,9 @@
               <td>0 <br> votes</td>
               <td class="mx-auto">
                 <% if question.solved %>
-                <div class="pt-2 pb-2 bg-success border border-success rounded-3 text-light">1 <br> answers</div>
+                <div class="pt-2 pb-2 bg-success border border-success rounded-3 text-light"><%= question.answers.count %> <br> answers</div>
                 <% else %>
-                <div class="pt-2 pb-2 border border-success rounded-3 text-success">1 <br> answers</div>
+                <div class="pt-2 pb-2 border border-success rounded-3 text-success"><%= question.answers.count %> <br> answers</div>
                 <% end %>
               </td>
               <td>12 <br> views</td>

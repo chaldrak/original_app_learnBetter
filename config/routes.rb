@@ -1,8 +1,13 @@
 Rails.application.routes.draw do
+  
+  get 'answers/create'
+
   resources :questions do
     collection do
       post :confirm
     end
+
+    resources :answers
   end
 
   root 'questions#index'

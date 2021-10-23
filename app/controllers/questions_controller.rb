@@ -9,6 +9,7 @@ class QuestionsController < ApplicationController
 
   # GET /questions/1 or /questions/1.json
   def show
+    @answer = Answer.new
   end
 
   # GET /questions/new
