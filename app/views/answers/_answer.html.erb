@@ -32,15 +32,34 @@
         </div>
       </div>
     </p>
+    
+    <%= render answer.comments %>
+
     <hr class="mt-2">
-    <p class="text-secondary" style="text-align: justify;">
-      Il n'a pas fait que survivre cinq siècles, mais s'est aussi adapté à la bureautique informatique, sans que son contenu n'en soit modifié. – <span><a href="#" class="text-decoration-none">user2021</a></span> <em class="text-dark">Jul 20 '18 at 14:54</em> <span>edit delete</span>
-    </p>
-    <hr class="mt-2">
-    <p class="text-secondary" style="text-align: justify;">
-      Il n'a pas fait que survivre cinq siècles, mais s'est aussi adapté à la bureautique informatique, sans que son contenu n'en soit modifié. – <span><a href="#" class="text-decoration-none">user99</a></span> <em class="text-dark">Jul 20 '18 at 14:54</em>
-    </p>
-    <hr class="mt-2">
-    <a href="" class="text-decoration-none">Add a comment</a>
+    <a style="cursor: pointer" class="text-decoration-none" data-bs-toggle="modal" data-bs-target="#addCommentAnswer<%= answer.id %>">Add a comment</a>
+    
+    
+    <div class="modal fade" id="addCommentAnswer<%= answer.id %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <p class="fw-bold mt-4 mb-2">Your Answer</p>
+              <%= form_with(model: [answer, answer.comments.build], local: true) do |form| %>
+                <div class="mb-3">
+                  <%= form.text_area :content, rows:"3", class:"form-control" %>
+                </div>
+                <%= form.submit "Post Your Comment", class:"btn btn-primary" %>
+              <% end %>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

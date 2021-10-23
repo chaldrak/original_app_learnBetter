@@ -6,8 +6,12 @@ Rails.application.routes.draw do
     collection do
       post :confirm
     end
-
+    resources :comments
     resources :answers
+  end
+
+  resources :answers, only: %i[] do
+    resources :comments, only: %i[ new create update edit destroy ]
   end
 
   root 'questions#index'

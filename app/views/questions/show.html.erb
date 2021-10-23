@@ -6,11 +6,12 @@
 
   <!-- Modal -->
     <%= render "edit" %>
+    
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+            <h5 class="modal-title" id="exampleModalLabel">Picture</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
@@ -22,6 +23,31 @@
         </div>
       </div>
     </div>
+
+    <div class="modal fade" id="addComment" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Post Comment</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <p class="fw-bold mt-4 mb-2">Your Comment</p>
+            <%= form_with(model: [@question, @question.comments.build], local: true) do |form| %>
+              <div class="mb-3">
+                <%= form.text_area :content, rows:"3", class:"form-control" %>
+              </div>
+              <%= form.submit "Post Your Comment", class:"btn btn-primary" %>
+            <% end %>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    
   <!-- end Modal -->
   
 
@@ -71,21 +97,15 @@
                 </div>
               </div>
             </p>
-            <hr class="mt-2">
-            <p class="text-secondary" style="text-align: justify;">
-              Il n'a pas fait que survivre cinq siècles, mais s'est aussi adapté à la bureautique informatique, sans que son contenu n'en soit modifié. – <span><a href="#" class="text-decoration-none">user2021</a></span> <em class="text-dark">Jul 20 '18 at 14:54</em> <span>edit delete</span>
-            </p>
-            <hr class="mt-2">
-            <p class="text-secondary" style="text-align: justify;">
-              Il n'a pas fait que survivre cinq siècles, mais s'est aussi adapté à la bureautique informatique, sans que son contenu n'en soit modifié. – <span><a href="#" class="text-decoration-none">user99</a></span> <em class="text-dark">Jul 20 '18 at 14:54</em>
-            </p>
-            <hr class="mt-2">
-            <a class="text-decoration-none" id="add_comment">Add a comment</a>
-            <p id="input" hidden><input type="text" name="comment"></p>
+            
+            <%= render @question.comments %>
+
+            <a style="cursor: pointer" class="text-decoration-none" data-bs-toggle="modal" data-bs-target="#addComment">Add a comment</a>
           </div>
       </div>
       
       <p class="fw-bold mt-4"><%= @question.answers.count %> Answers</p>
+      
       <%= render @question.answers %>
 
     </div>

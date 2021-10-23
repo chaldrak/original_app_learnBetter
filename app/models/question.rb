@@ -4,6 +4,7 @@ class Question < ApplicationRecord
 
   belongs_to :user
   has_many :answers
+  has_many :comments
   mount_uploader :picture, ImageUploader
 
   validates :title, length: {minimum: 20}

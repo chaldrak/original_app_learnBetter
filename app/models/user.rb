@@ -10,6 +10,7 @@ class User < ApplicationRecord
   validates :name, length: {minimum: 6}
   has_many :questions, dependent: :destroy
   has_many :answers, dependent: :destroy
+  has_many :comments, dependent: :destroy
   
 
   def create_is_admin_default
