@@ -4,13 +4,29 @@ class QuestionsController < ApplicationController
 
   # GET /questions or /questions.json
   def index
-    @questions = Question.all
+    if params[:q] == "all"
+      @questions = Question.order(created_at: :asc)
+      @count = Question.count
+      @title = "All Questions"
+    elsif params[:q] == "solved"
+      @questions = Question.where(solved: true).order(created_at: :asc)
+      @count = Question.where(solved: true).count
+      @title = "Solved Questions"
+    elsif params[:q] == "unsolved"
+      @questions = Question.where(solved: false).order(created_at: :asc)
+      @count = Question.where(solved: false).count
+      @title = "Unsolved Questions"
+    else
+      @questions = Question.all
+      @title = "Top Questions"
+    end
   end
 
   # GET /questions/1 or /questions/1.json
   def show
     @answer = Answer.new
-    @favorite = current_user.favorites.find_by(question_id: @question.id)
+    @favorite = current_user.favorites.find_by(question_id: @question.id) if current_user
+    @vote = current_user.votes.find_by(question_id: @question.id) if current_user
   end
 
   # GET /questions/new
@@ -51,6 +67,18 @@ class QuestionsController < ApplicationController
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @question.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # PATCH /set_good_answer
+  def set_good_answer
+    @question = Question.find(params[:id])
+    @question.solved = true
+    respond_to do |format|
+      if @question.update(answer_id: params[:answer_id])
+        format.html { redirect_to @question, notice: "Question was solved." }
+        format.json { render :show, status: :ok, location: @question }
       end
     end
   end

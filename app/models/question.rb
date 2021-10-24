@@ -6,6 +6,7 @@ class Question < ApplicationRecord
   has_many :answers
   has_many :comments
   has_many :favorites, dependent: :destroy
+  has_many :votes, dependent: :destroy
   mount_uploader :picture, ImageUploader
 
   validates :title, length: {minimum: 20}

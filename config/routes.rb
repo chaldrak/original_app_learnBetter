@@ -3,6 +3,9 @@ Rails.application.routes.draw do
   get 'answers/create'
 
   resources :questions do
+    member do
+      patch :set_good_answer
+    end
     collection do
       post :confirm
     end
@@ -12,9 +15,13 @@ Rails.application.routes.draw do
 
   resources :favorites, only: [:create, :destroy]
 
+  resources :votes, only: [:create, :update, :destory]
+
   resources :answers, only: %i[] do
     resources :comments, only: %i[ new create update edit destroy ]
   end
+
+  resources :users
 
   root 'questions#index'
 

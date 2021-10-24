@@ -2,10 +2,38 @@
 <div class="row">
   <div class="col-sm-1">
     <p class="text-center">
-      <a href="#" class="btn"><i class="fas fa-sort-up h3 text-secondary"></i></a><br>
-      <span>10</span><br>
-      <a href="#" class="btn"><i class="fas fa-sort-down h3 text-secondary"></i></a><br>
-      <a href="#" class=""><i class="fas fa-check text-secondary"></i></a>
+      
+      <% if @vote.present? %>
+        <%= link_to vote_path(id: @vote.id, note: 1), method: :put, class:"btn", title:"Vote up" do %>
+          <i class="fas fa-sort-up h3 text-secondary"></i>
+        <% end %><br>
+        <span> <%= link_to "#{answer.votes.sum(:note)}", vote_path(id: @vote.id, note: 0), method: :put, class:"text-decoration-none text-dark", title:"Cancel vote" %></span><br>
+        <%= link_to vote_path(id: @vote.id, note: -1), method: :put, class:"btn", title:"Vote down" do %>
+          <i class="fas fa-sort-down h3 text-secondary"></i>
+        <% end %><br>
+      <% else %>
+        <%= link_to votes_path(answer_id: answer.id, note: 1), method: :post, class:"btn", title:"Vote up" do %>
+          <i class="fas fa-sort-up h3 text-secondary"></i>
+        <% end %><br>
+        <span> <%= answer.votes.sum(:note) %></span><br>
+        <%= link_to votes_path(answer_id: answer.id, note: -1), method: :post, class:"btn", title:"Vote down" do %>
+          <i class="fas fa-sort-down h3 text-secondary"></i>
+        <% end %><br>
+      <% end %>
+
+      <% if current_user == @question.user %>
+        <%= link_to set_good_answer_question_path(@question, answer_id: answer.id), method: :patch, data: {confirm: "Do you really want to set this answer as good answer ?"} do %>
+          <% if @question.solved and @question.answer_id == answer.id %>
+            <i class="fas fa-check h3 text-success"></i>
+          <% else %>
+            <i class="fas fa-check text-secondary"></i>
+          <% end %>
+        <% end %>
+      <% else %>
+        <% if @question.solved and @question.answer_id == answer.id %>
+          <i class="fas fa-check h3 text-success"></i>
+        <% end %>
+      <% end %>
     </p>
   </div>
   <div class="col-sm-11">
