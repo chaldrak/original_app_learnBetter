@@ -10,6 +10,7 @@ class QuestionsController < ApplicationController
   # GET /questions/1 or /questions/1.json
   def show
     @answer = Answer.new
+    @favorite = current_user.favorites.find_by(question_id: @question.id)
   end
 
   # GET /questions/new

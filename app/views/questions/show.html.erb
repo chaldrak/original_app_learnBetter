@@ -67,7 +67,17 @@
               <a href="#" class="btn"><i class="fas fa-sort-up h3 text-secondary"></i></a><br>
               <span>10</span><br>
               <a href="#" class="btn"><i class="fas fa-sort-down h3 text-secondary"></i></a><br>
-              <a href="#" class=""><i class="fas fa-bookmark text-secondary"></i></a>
+                <% if @favorite.present? %>
+                  <%= link_to favorite_path(@favorite), method: :delete, class:"" do %>
+                    <i class="fas fa-bookmark text-warning"></i>
+                  <% end %>
+                <% else %>
+                  <%= link_to favorites_path(question_id: @question.id), method: :post, class:"" do %>
+                    <i class="fas fa-bookmark text-secondary"></i>
+                  <% end %>
+                <% end %>
+              <br>
+              <span><%= @question.favorites.count %></span>
             </p>
           </div>
           <div class="col-sm-11">

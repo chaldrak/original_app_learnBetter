@@ -10,6 +10,8 @@ Rails.application.routes.draw do
     resources :answers
   end
 
+  resources :favorites, only: [:create, :destroy]
+
   resources :answers, only: %i[] do
     resources :comments, only: %i[ new create update edit destroy ]
   end
