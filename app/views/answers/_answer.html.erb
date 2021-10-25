@@ -3,23 +3,15 @@
   <div class="col-sm-1">
     <p class="text-center">
       
-      <% if @vote.present? %>
-        <%= link_to vote_path(id: @vote.id, note: 1), method: :put, class:"btn", title:"Vote up" do %>
-          <i class="fas fa-sort-up h3 text-secondary"></i>
-        <% end %><br>
-        <span> <%= link_to "#{answer.votes.sum(:note)}", vote_path(id: @vote.id, note: 0), method: :put, class:"text-decoration-none text-dark", title:"Cancel vote" %></span><br>
-        <%= link_to vote_path(id: @vote.id, note: -1), method: :put, class:"btn", title:"Vote down" do %>
-          <i class="fas fa-sort-down h3 text-secondary"></i>
-        <% end %><br>
-      <% else %>
-        <%= link_to votes_path(answer_id: answer.id, note: 1), method: :post, class:"btn", title:"Vote up" do %>
-          <i class="fas fa-sort-up h3 text-secondary"></i>
-        <% end %><br>
-        <span> <%= answer.votes.sum(:note) %></span><br>
-        <%= link_to votes_path(answer_id: answer.id, note: -1), method: :post, class:"btn", title:"Vote down" do %>
-          <i class="fas fa-sort-down h3 text-secondary"></i>
-        <% end %><br>
-      <% end %>
+      <%= link_to vote_answer_answer_path(answer, note: 1), method: :post, class:"btn", title:"Vote up" do %>
+        <i class="fas fa-sort-up h3 text-secondary"></i>
+      <% end %><br>
+
+      <span> <%= link_to "#{answer.votes.sum(:note)}", vote_answer_answer_path(answer, note: 0), method: :post, class:"text-decoration-none text-dark", title:"Cancel vote" %></span><br>
+      
+      <%= link_to vote_answer_answer_path(answer, note: -1), method: :post, class:"btn", title:"Vote down" do %>
+        <i class="fas fa-sort-down h3 text-secondary"></i>
+      <% end %><br>
 
       <% if current_user == @question.user %>
         <%= link_to set_good_answer_question_path(@question, answer_id: answer.id), method: :patch, data: {confirm: "Do you really want to set this answer as good answer ?"} do %>

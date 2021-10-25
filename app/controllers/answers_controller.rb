@@ -59,6 +59,21 @@ class AnswersController < ApplicationController
     end
   end
 
+  #Vote answer
+  def vote_answer
+    @vote = current_user.votes.find_by(answer_id: params[:id])
+    if @vote.present?
+      current_user.votes.update(note: params[:note])
+    else
+      @vote = current_user.votes.create(answer_id: params[:id], note: params[:note])
+    end
+    respond_to do |format|
+      format.html { redirect_to (@vote.answer.question), notice: "Vote successfully saved." }
+      format.json { render :show, status: :created, location: @vote }
+    end
+  end
+  
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_answer

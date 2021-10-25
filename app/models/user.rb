@@ -5,7 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :confirmable, :trackable, :omniauthable, omniauth_providers: %i(google facebook)
 
-  before_create :create_is_admin_default
+  before_create :create_is_admin_default, :set_default_avatar!
 
   validates :name, length: {minimum: 6}
   has_many :questions, dependent: :destroy
@@ -18,7 +18,14 @@ class User < ApplicationRecord
 
   def create_is_admin_default
     self.is_admin = false
-    self.picture = Faker::Avatar.image(size: "100x100", format: "jpg")
+    # self.picture = Faker::Avatar.image(size: "100x100", format: "jpg")
+  end
+
+  def set_default_avatar!
+    path = File.join(Rails.root, 'public/img', "user#{rand(1..2).to_s}.png")
+    File.open(path) do |f|
+      self.picture = f
+    end
   end
 
   def self.create_unique_string

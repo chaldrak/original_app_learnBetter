@@ -10,35 +10,19 @@
           </div>
       </div>
       </div>
-      <div class="row m-1 text-left">
-      <div class="card p-0" style="width: 12rem;">
-          <div class="card-header bg-primary text-light">
-          Users <span class="badge bg-danger text-light">online</span>
-          </div>
-          <ul class="list-group list-group-flush">
-          <li class="list-group-item text-dark">
-              <a href="" class="btn"><i class="fas fa-user-graduate"></i> user2021 </a>
-          </li>
-          <li class="list-group-item text-dark">
-              <a href="" class="btn"><i class="fas fa-user-graduate"></i> user2021 </a>
-          </li>
-          <li class="list-group-item text-dark">
-              <a href="" class="btn"><i class="fas fa-user-graduate"></i> user2021 </a>
-          </li>
-          <li class="list-group-item text-dark">
-              <a href="" class="btn"><i class="fas fa-user-graduate"></i> user2021 </a>
-          </li>
-          <li class="list-group-item text-dark">
-              <a href="" class="btn"><i class="fas fa-user-graduate"></i> user2021 </a>
-          </li>
-          <li class="list-group-item text-dark">
-              <a href="" class="btn"><i class="fas fa-user-graduate"></i> user2021 </a>
-          </li>
-          <li class="list-group-item text-dark">
-              <a href="" class="btn"><i class="fas fa-user-graduate"></i> user2021 </a>
-          </li>
-          </ul>
-      </div>
+      <div class="row m-1">
+        <div class="card p-0" style="width: 12rem;">
+            <div class="card-header bg-primary text-light">
+            Users <span class="badge bg-danger text-light">online</span>
+            </div>
+            <ul class="list-group list-group-flush text-left">
+                <% User.order(created_at: :desc).limit(10).each do |user| %>
+                <li class="list-group-item text-dark">
+                    <a href="<%= user_path(user) %>" class="btn" title="<%= user.name %>"><i class="fas fa-user-graduate"></i> <%= user.name.truncate(10) %> </a>
+                </li>
+                <% end %>
+            </ul>
+        </div>
       </div>
   </div>
 </div>

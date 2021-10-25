@@ -4,7 +4,7 @@ class Question < ApplicationRecord
 
   belongs_to :user
   has_many :answers, dependent: :destroy
-  has_many :comments
+  has_many :comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_many :votes, dependent: :destroy
   mount_uploader :picture, ImageUploader

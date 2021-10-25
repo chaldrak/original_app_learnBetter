@@ -19,6 +19,9 @@ Rails.application.routes.draw do
 
   resources :answers, only: %i[] do
     resources :comments, only: %i[ new create update edit destroy ]
+    member do
+      post :vote_answer
+    end
   end
 
   resources :users, only: [:update, :show, :index]

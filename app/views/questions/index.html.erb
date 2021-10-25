@@ -29,7 +29,7 @@
               </td>
               <td>12 <br> views</td>
               <td><%= link_to "#{question.title}", question_path(question), class:"nav-link" %></td>
-              <td><br> answered <%= time_ago_converter(question.created_at) %> ago <%= link_to "#{question.user.name}", question_path(question) %></td>
+              <td><br> answered <%= time_ago_converter(question.created_at) %> ago <%= link_to "#{question.user.name}", user_path(question.user) %></td>
             </tr>
           <% end %>
           </table>
