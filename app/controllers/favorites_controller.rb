@@ -50,7 +50,7 @@ class FavoritesController < ApplicationController
     favorite = current_user.favorites.find(params[:id]).destroy
     respond_to do |format|
       
-      format.html { redirect_to question, notice: "Question successfully removed from your favorites." }
+      format.html { redirect_to question, alert: "Question successfully removed from your favorites." }
       format.json { head :no_content }
     end
   end

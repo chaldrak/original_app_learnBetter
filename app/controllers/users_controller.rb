@@ -3,6 +3,7 @@ class UsersController < ApplicationController
   
   def index
     @users = User.order(created_at: :asc)
+    @users = User.where("name LIKE ?", "%#{params[:q]}%") if params[:q]
   end
 
   def show
