@@ -4,6 +4,10 @@ class QuestionsController < ApplicationController
 
   # GET /questions or /questions.json
   def index
+
+    @questions = Question.all
+    @title = "Top Questions"
+
     if params[:q] == "all"
       @questions = Question.order(created_at: :asc)
       @count = Question.count
@@ -16,9 +20,10 @@ class QuestionsController < ApplicationController
       @questions = Question.where(solved: false).order(created_at: :asc)
       @count = Question.where(solved: false).count
       @title = "Unsolved Questions"
-    else
-      @questions = Question.all
-      @title = "Top Questions"
+    elsif params[:quizz]
+      @questions = Question.where("title LIKE ?", "%#{params[:quizz]}%").order(created_at: :asc)
+      @count = Question.where("title LIKE ?", "%#{params[:quizz]}%").count
+      @title = "search with '#{params[:quizz]}'"
     end
   end
 
