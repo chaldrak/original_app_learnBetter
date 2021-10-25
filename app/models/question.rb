@@ -3,7 +3,7 @@ class Question < ApplicationRecord
   before_create :set_solved_as_false
 
   belongs_to :user
-  has_many :answers
+  has_many :answers, dependent: :destroy
   has_many :comments
   has_many :favorites, dependent: :destroy
   has_many :votes, dependent: :destroy

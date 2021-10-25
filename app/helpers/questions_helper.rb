@@ -15,8 +15,10 @@ module QuestionsHelper
       Time.at(during).utc.strftime("%M min")
     elsif during/(60*60*24) == 0
       Time.at(during).utc.strftime("%H hours")
-    else
+    elsif during/(60*60*24*30) == 0
       Time.at(during).utc.strftime("%d days")
+    else
+      Time.at(during).utc.strftime("%m month")
     end
   end
 

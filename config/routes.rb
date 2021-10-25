@@ -21,7 +21,7 @@ Rails.application.routes.draw do
     resources :comments, only: %i[ new create update edit destroy ]
   end
 
-  resources :users
+  resources :users, only: [:update, :show, :index]
 
   root 'questions#index'
 

@@ -1,0 +1,157 @@
+<div class="container-fluid">
+  
+  <%= render "partials/sidebar_left" %>
+
+  <%= render "partials/sidebar_right" %>
+
+  <!-- start middle sidebar -->
+  <div class="middle" style="padding-top: 100px;overflow: auto;">
+    <div class="container-fluid">
+      <div class="row mt-2">
+        <div class="grid-container mb-4" style="grid-template-columns: auto auto;">
+            <div class="grid-item">
+              <div class="d-flex">
+                <%= image_tag user_picture_is_mounted_or_no(@user), width:"200px", height:"200px", alt:"#{@user.name}", class:"border rounded-3 me-4 p-2" %>
+                <p style="text-align: left;" class="my-auto">
+                  <span><a href="#" class="text-decoration-none"><%= @user.name %></a></span><br>
+                  <span class="text-secondary"><%= "#{@user.sector}, #{@user.faculty} - #{@user.university}" if @user.sector %></span><br>
+                  <span class="text-secondary"><%= "#{@user.city}, #{@user.contact}" if @user.city %></span><br>
+                  <span class="text-secondary"><%= "Member since #{time_ago_converter(@user.created_at)}" %></span><br><br>
+                  <span class="text-primary text-decoration-underline"><%= @user.email %></span><br>
+                </p>
+              </div>
+            </div>
+            <div class="grid-item">
+              <div class="d-flex justify-content-end">
+                <% if @user == current_user %>
+                  <a class="btn btn-light border-dark me-2" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fas fa-pencil"></i> Edit profile</a>
+                <% end %>
+                <% unless @user == current_user %>
+                  <a href="#" class="btn btn-light border-dark"><i class="fas fa-paper-plane"></i> Message</a>
+                <% end %>
+              </div>
+            </div>
+        </div>
+      </div>
+      <div class="row">
+        <nav>
+            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+              <button class="nav-link active" id="nav-summary-tab" data-bs-toggle="tab" data-bs-target="#nav-summary" type="button" role="tab" aria-controls="nav-summary" aria-selected="true">Summary</button>
+              <button class="nav-link" id="nav-answers-tab" data-bs-toggle="tab" data-bs-target="#nav-answers" type="button" role="tab" aria-controls="nav-answers" aria-selected="false">Answers</button>
+              <button class="nav-link" id="nav-questions-tab" data-bs-toggle="tab" data-bs-target="#nav-questions" type="button" role="tab" aria-controls="nav-questions" aria-selected="false">Questions</button>
+              <button class="nav-link" id="nav-favorites-tab" data-bs-toggle="tab" data-bs-target="#nav-favorites" type="button" role="tab" aria-controls="nav-favorites" aria-selected="false">Favorites</button>
+            </div>
+          </nav>
+          <div class="tab-content" id="nav-tabContent">
+            <div class="tab-pane fade show active" id="nav-summary" role="tabpanel" aria-labelledby="nav-summary-tab">
+              <table class="table mt-4 mb-4 table-striped border">
+                <tbody>
+                    <th scope="row">Answers</th>
+                    <td><span class="badge rounded-pill bg-warning text-dark"><%= @user.answers.count %></span></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Questions</th>
+                    <td><span class="badge rounded-pill bg-warning text-dark"><%= @user.questions.count %></span></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Favorites</th>
+                    <td><span class="badge rounded-pill bg-warning text-dark"><%= @user.favorites.count %></span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="tab-pane fade" id="nav-answers" role="tabpanel" aria-labelledby="nav-answers-tab">
+              <table class="table mt-4 mb-4">
+                <tbody>
+                  <% @user.answers.each do |answer| %>
+                    <tr>
+                      <td><span class="badge bg-light text-dark border border-dark"><%= answer.votes.sum(:note) %></span></td>
+                      <td><a href="<%= question_path(answer.question) %>" class="text-decoration-none"><%= answer.content.truncate(100) %></a></td>
+                      <td><%= answer.created_at.strftime("%b %m '%y at %H:%M") %></td>
+                    </tr>
+                  <% end %>
+                </tbody>
+              </table>
+            </div>
+            <div class="tab-pane fade" id="nav-questions" role="tabpanel" aria-labelledby="nav-questions-tab">
+              <table class="table mt-4 mb-4">
+                <tbody>
+                  <% @user.questions.each do |question| %>
+                    <tr>
+                      <td><span class="badge bg-light text-dark border border-dark"><%= question.votes.sum(:note) %></span></td>
+                      <td><a href="<%= question_path(question) %>" class="text-decoration-none"><%= question.title.truncate(100) %></a></td>
+                      <td><%= question.created_at.strftime("%b %m '%y at %H:%M") %></td>
+                    </tr>
+                  <% end %>
+                </tbody>
+              </table>
+            </div>
+            <div class="tab-pane fade" id="nav-favorites" role="tabpanel" aria-labelledby="nav-favorites-tab">
+              <table class="table mt-4 mb-4">
+                <tbody>
+                  <% @user.favorites.each do |favorite| %>
+                    <tr>
+                      <td><span class="badge bg-light text-dark border border-dark"><%= favorite.question.votes.sum(:note) %></span></td>
+                      <td><a href="<%= question_path(favorite.question) %>" class="text-decoration-none"><%= favorite.question.title.truncate(100) %></a></td>
+                      <td><%= favorite.question.created_at.strftime("%b %m '%y at %H:%M") %></td>
+                    </tr>
+                  <% end %>
+                </tbody>
+              </table>
+            </div>
+        </div>
+      </div>
+      <hr>
+      <!-- footer -->
+      <%= render "partials/footer" %>
+  </div>
+  <!-- end middle sidebar -->
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Edit profile</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <%= form_with(model: @user, local: true, url: user_path, method: :put) do |form| %>
+          <%= image_tag user_picture_is_mounted_or_no(@user), width:"100px", height:"100px", alt:"#{@user.name}", class:"border rounded-3 me-2 mb-2 p-2" %>
+          <div class="mb-3">
+            <%= form.label "Choose a new picture", class:"form-label fw-bold" %>
+            <%= form.file_field :picture, class:"form-control" %>
+          </div>
+          <div class="mb-3">
+            <%= form.text_field :name, class:"form-control", placeholder:"Your full name" %>
+          </div>
+          <div class="mb-3">
+            <%= form.email_field :email, class:"form-control", placeholder:"Email address" %>
+            <div id="emailHelp" class="form-text">Please set a valid email adress</div>
+          </div>
+          <div class="mb-3">
+            <%= form.text_field :city, class:"form-control", placeholder:"Your city" %>
+          </div>
+          <div class="mb-3">
+            <%= form.text_field :university, class:"form-control", placeholder:"Your university e.g. UAC" %>
+          </div>
+          <div class="mb-3">
+            <%= form.text_field :faculty, class:"form-control", placeholder:"Your faculty e.g. FSS" %>
+          </div>
+          <div class="mb-3">
+            <%= form.text_field :sector, class:"form-control", placeholder:"Your sector e.g. Medecine" %>
+          </div>
+          <div class="mb-3">
+            <%= form.number_field :contact, class:"form-control", placeholder:"Phone number" %>
+          </div>
+          <%= form.submit "Save changes", class:"btn btn-primary" %>
+        <% end %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>

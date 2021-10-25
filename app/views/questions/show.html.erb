@@ -120,7 +120,7 @@
                 <div class="col-4 border rounded-3 p-2" style="background-color: hsl(205deg 46% 92%); width: 30%;">
                   <p class="text-secondary mb-0">asked <%= time_ago_converter(@question.created_at) %> ago</p>
                   <%= image_tag user_picture_is_mounted_or_no(@question.user), width:"40px", alt:"#{@question.user.name}", class:"border border-secondary rounded-3 me-2" %>
-                  <a href="#" class="text-decoration-none"><span><%= @question.user.name %></span></a>
+                  <a href="<%= user_path(@question.user) %>" class="text-decoration-none"><span><%= @question.user.name %></span></a>
                 </div>
               </div>
             </p>

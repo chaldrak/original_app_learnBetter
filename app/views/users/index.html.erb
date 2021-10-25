@@ -1,0 +1,44 @@
+<div class="container-fluid">
+  
+  <%= render "partials/sidebar_left" %>
+
+  <%= render "partials/sidebar_right" %>
+
+  <!-- start middle sidebar -->
+  <div class="middle" style="padding-top: 100px;overflow: auto;">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div>
+          <h3 class="mb-4">Users</h3>
+          <form class="d-flex mb-4 w-25">
+            <div class="input-group">
+              <span class="input-group-text" id="basic-addon1">
+                <i class="fas fa-search"></i>
+              </span>
+              <input type="search" class="form-control" placeholder="Search..." aria-label="Search" aria-describedby="basic-addon1">
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="grid-container mb-4">
+        <% @users.each do |user| %>
+        <div class="grid-item">
+          <div class="d-flex">
+            <%= image_tag user_picture_is_mounted_or_no(user), width:"100px", height:"100px", alt:"#{user.name}", class:"border rounded-3 me-2 p-2" %>
+            <p style="text-align: left;">
+              <span><a href="<%= user_path(user) %>" class="text-decoration-none"><%= user.name %></a></span><br>
+              <span class="text-secondary"><%= "#{user.sector}, #{user.faculty} - #{user.university}" if user.sector %></span>
+              <span class="text-secondary"><%= "#{user.city}, #{user.contact}" if user.city %></span><br>
+              <span class="text-secondary"><%= "Member since #{time_ago_converter(user.created_at)}" %></span><br>
+            </p>
+          </div>
+        </div>
+        <% end %>
+      </div>
+      <hr>
+      <!-- footer -->
+      <%= render "partials/footer" %>
+  </div>
+  <!-- end middle sidebar -->
+  </div>
+</div>
