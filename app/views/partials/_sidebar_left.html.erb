@@ -46,10 +46,12 @@
           </a>
       </li>
       <li>
-          <a href="#">
+          <% if current_user.try(:is_admin?) %>
+          <a href="/admin">
               <span class="icon"><i class="fas fa-user-shield"></i></span>
               <span class="item">Admin Mode</span>
           </a>
+          <% end %>
       </li>
   </ul>
 </div>

@@ -30,6 +30,8 @@ gem 'omniauth-facebook'
 gem 'omniauth-rails_csrf_protection'
 # gem 'redis', '~> 4.0'
 gem 'faker'
+gem 'rails_admin', '~> 2.0'
+gem 'cancancan'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 gem 'carrierwave', '~> 2.0'

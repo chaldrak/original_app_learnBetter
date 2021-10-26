@@ -4,7 +4,7 @@ class Message < ApplicationRecord
   validates_presence_of :content, :conversation_id, :user_id
 
   def message_time
-    created_at.strftime("%l:%M | %b %d")
+    created_at.strftime("%H:%M | %b %d")
   end
 
   def recipient
