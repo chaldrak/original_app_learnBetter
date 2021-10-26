@@ -1,0 +1,32 @@
+<div class="middle" style="padding-top: 100px;overflow: auto;">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div>
+        <h3 class="mb-4">All discussions</h3>
+          <div class="messages" style="overflow: auto;">
+
+            <div class="list-group rounded-0">
+              <% @conversations.each do |conversation| %>
+                <% if conversation.target_user(current_user).present? %>
+                  <a href="<%= conversation_messages_path(conversation) %>" class="list-group-item list-group-item-action list-group-item-light rounded-0">
+                    <div class="media"><%= image_tag conversation.target_user(current_user).picture.url, alt:"#{conversation.target_user(current_user).name}", width:"30", class:"rounded-circle" %>
+                      <div class="media-body ml-4">
+                        <div class="d-flex align-items-center justify-content-between mb-1">
+                          <h6 class="mb-0"><%= conversation.target_user(current_user).name %></h6><small class="small font-weight-bold"><%= conversation.messages.last.created_at.strftime("%d %b") if conversation.messages.last %></small>
+                        </div>
+                        <p class="font-italic text-muted mb-0 text-small"><%= conversation.messages.last.content if conversation.messages.last %></p>
+                      </div>
+                    </div>
+                  </a>
+                <% end %>
+              <% end %>
+
+            </div>
+        </div>
+      </div>
+  </div>
+  <hr>
+  <!-- footer -->
+  <%= render "partials/footer" %>
+</div>
+

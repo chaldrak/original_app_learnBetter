@@ -27,7 +27,9 @@
                   <a class="btn btn-light border-dark me-2" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fas fa-pencil"></i> Edit profile</a>
                 <% end %>
                 <% unless @user == current_user %>
-                  <a href="#" class="btn btn-light border-dark"><i class="fas fa-paper-plane"></i> Message</a>
+                  <%= link_to conversations_path(sender_id: current_user.id, recipient_id: @user.id), method: :post, class:"btn btn-light border-dark" do %>
+                    <i class="fas fa-paper-plane"></i> Message
+                  <% end %>
                 <% end %>
               </div>
             </div>
