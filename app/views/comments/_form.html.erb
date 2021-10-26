@@ -1,0 +1,18 @@
+<p class="fw-bold mt-4 mb-2">Your Answer</p>
+<% if @question %>
+  <%= form_with(model: [@question, @question.comments.build], local: true) do |form| %>
+    <div id="emailHelp" class="form-text text-danger"><%= render "devise/shared/error_messages", resource: @comment %></div>
+    <div class="mb-3">
+      <%= form.text_area :content, rows:"3", class:"form-control" %>
+    </div>
+    <%= form.submit "Post Your Comment", class:"btn btn-primary" %>
+  <% end %>
+<% else %>
+  <%= form_with(model: [@answer, @answer.comments.build], local: true) do |form| %>
+    <div id="emailHelp" class="form-text text-danger"><%= render "devise/shared/error_messages", resource: @comment %></div>
+    <div class="mb-3">
+      <%= form.text_area :content, rows:"3", class:"form-control" %>
+    </div>
+    <%= form.submit "Post Your Comment", class:"btn btn-primary" %>
+  <% end %>
+<% end %>

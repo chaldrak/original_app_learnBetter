@@ -1,0 +1,48 @@
+<hr class="mt-2">
+<% if comment.persisted? %>
+  <p class="text-secondary" style="text-align: justify;">
+    <%= comment.content %> – <span><a href="<%= user_path(comment.user) %>" class="text-decoration-none"><%= comment.user.name %></a></span> <em class="text-dark"><%= comment.created_at.strftime("%b %m '%y at %H:%M") %> </em>
+    <% if comment.user == current_user %>
+    <span>
+      <a href="#" title="edit question" class="me-2 ms-2 text-decoration-none text-secondary" data-bs-toggle="modal" data-bs-target="#commentEdit<%= comment.id %>">
+        edit
+      </a>
+      <%= link_to "delete", question_comment_path(comment.question, comment), method: :delete, data: {confirm: "This deletion is irreversible. Do you want to continue ?"}, class:"text-decoration-none text-danger" if comment.question %>
+      <%= link_to "delete", answer_comment_path(comment.answer, comment), method: :delete, data: {confirm: "This deletion is irreversible. Do you want to continue ?"}, class:"text-decoration-none text-danger" if comment.answer %>
+    </span>
+    <% end %>
+  </p>
+<% end %>
+
+
+<div class="modal fade" id="commentEdit<%= comment.id %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Editing Comment</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p class="fw-bold mt-4 mb-2">Your Answer</p>
+        <% if comment.question %>
+          <%= form_with(model: [Question.find(comment.question.id), comment], method: :put) do |form| %>
+            <div class="mb-3">
+              <%= form.text_area :content, rows:"3", class:"form-control" %>
+            </div>
+            <%= form.submit "Post Your Comment", class:"btn btn-primary" %>
+          <% end %>
+        <% else %>
+          <%= form_with(model: [comment.answer, comment], local: true) do |form| %>
+            <div class="mb-3">
+              <%= form.text_area :content, rows:"3", class:"form-control" %>
+            </div>
+            <%= form.submit "Save Changes", class:"btn btn-primary" %>
+          <% end %>
+        <% end %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

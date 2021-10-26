@@ -1,0 +1,41 @@
+<p id="notice" style="margin-top:200px"><%= notice %></p>
+
+<h1>Comments <%= @question.comments.count if @question %></h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Content</th>
+      <th>Question</th>
+      <th>Answer</th>
+      <th>User</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @comments.each do |comment| %>
+      <tr>
+        <td><%= comment.content %></td>
+        <td><%= comment.question.id if comment.question %></td>
+        <td><%= comment.answer.id if comment.answer %></td>
+        <td><%= comment.user.name %></td>
+        <%
+=begin%>
+ <td><%= link_to 'Show', question_comment_path(comment.question, comment) %></td>
+        <td><%= link_to 'Edit', edit_question_comment_path(comment.question, comment) %></td>
+        <td><%= link_to 'Destroy', question_comment_path(comment.question, comment), method: :delete, data: { confirm: 'Are you sure?' } %></td>  
+<%
+=end%>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%
+=begin%>
+ <%= link_to 'New Comment', new_question_comment_path %>  
+<%
+=end%>

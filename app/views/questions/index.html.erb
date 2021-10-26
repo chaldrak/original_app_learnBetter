@@ -1,0 +1,45 @@
+<div class="container-fluid">
+  
+  <%= render "partials/sidebar_left" %>
+
+  <%= render "partials/sidebar_right" %>
+
+  <!-- start middle sidebar -->
+  <div class="middle" style="padding-top: 100px;overflow: auto;">
+    <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="d-flex justify-content-between">
+              <h3><%= @title %></h3>
+              <%= link_to "Ask Question", new_question_path, class:"btn btn-primary" %>
+          </div>
+          <p class="text-secondary h5 mt-2"><%= "#{@count} questions" if @count %></p>
+          <hr class="mt-2">
+        </div>
+        <div class="row text-center">
+          <table class="table table-hover table-light">
+          <% @questions.each do |question| %>
+            <tr>
+              <td><%= question.votes.sum(:note) %> <br> <%= "vote".pluralize(question.votes.sum(:note)) %></td>
+              <td class="mx-auto">
+                <% if question.solved %>
+                  <div class="pt-2 pb-2 bg-success border border-success rounded-3 text-light"><%= question.answers.count %> <br> <%= "answer".pluralize(question.answers.count) %></div>
+                <% else %>
+                  <div class="pt-2 pb-2 border border-success rounded-3 text-success"><%= question.answers.count %> <br> <%= "answer".pluralize(question.answers.count) %></div>
+                <% end %>
+              </td>
+              <td>12 <br> views</td>
+              <td><%= link_to "#{question.title}", question_path(question), class:"nav-link" %></td>
+              <td><br> answered <%= time_ago_converter(question.created_at) %> ago <%= link_to "#{question.user.name}", user_path(question.user) %></td>
+            </tr>
+          <% end %>
+          </table>
+        </div>
+    </div>
+    <hr>
+    
+    <%= render "partials/footer" %>
+
+  </div>
+  <!-- end middle sidebar -->
+
+</div>

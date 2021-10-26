@@ -13,6 +13,7 @@ Things you may want to cover:
 - Fonction de message
 - Ajax
 - Jquery
+- Notifications with Toast
 - Bootstrap
 - Admin_rails
 - Omniauth (Google & Facebook)

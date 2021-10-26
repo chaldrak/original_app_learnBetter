@@ -1,0 +1,116 @@
+<div class="container-fluid">
+  <!-- start left sidebar -->
+  <div class="sidebar bg-light">
+    <!-- Users box-->
+      <div class="bg-white">
+
+        <div class="bg-gray px-4 py-2 bg-light">
+          <p class="h5 mb-0 py-1">Discussions</p>
+        </div>
+
+        <div class="messages-box">
+
+          <div class="list-group rounded-0">
+            <% @conversations.each do |conversation| %>
+              <% if conversation.target_user(current_user).present? %>
+                <a href="<%= conversation_messages_path(conversation) %>" class="list-group-item list-group-item-action list-group-item-light rounded-0">
+                  <div class="media"><%= image_tag conversation.target_user(current_user).picture.url, alt:"#{conversation.target_user(current_user).name}", width:"30", class:"rounded-circle" %>
+                    <div class="media-body ml-4">
+                      <div class="d-flex align-items-center justify-content-between mb-1">
+                        <h6 class="mb-0"><%= conversation.target_user(current_user).name %></h6><small class="small font-weight-bold"><%= conversation.messages.last.created_at.strftime("%d %b") if conversation.messages.last %></small>
+                      </div>
+                      <p class="font-italic text-muted mb-0 text-small"><%= conversation.messages.last.content if conversation.messages.last %></p>
+                    </div>
+                  </div>
+                </a>
+              <% end %>
+            <% end %>
+
+          </div>
+        </div>
+    </div>
+  </div>
+  <!-- end left sidebar -->
+
+  <!-- start rigth sidebar -->
+  <%= render "partials/sidebar_right" %>
+  <!-- end rigth sidebar -->
+
+  <!-- start middle sidebar -->
+  <div class="middle">
+    
+      <div class="row rounded-lg overflow-hidden mt-4">
+        <!-- Chat Box-->
+        <div class="px-0">
+          <div class="px-4 py-5 chat-box bg-white mt-4">
+            <div class="mb-4">
+              <% if @over_ten %>
+                <div class="spinner-grow spinner-grow-sm text-primary" role="status"></div>
+                <div class="spinner-grow spinner-grow-sm text-primary" role="status"></div>
+                <div class="spinner-grow spinner-grow-sm text-primary" role="status"></div>
+                <%= link_to '?m=all', class:"h3", title:"Show more" do %>
+                  
+                  <i class="fas fa-comment-dots"></i>
+                  
+                <% end %>
+              <% end %>
+            </div>
+            <% @messages.each do |message| %>
+              <% if message.content.present? %>
+                
+                <% if message.user != current_user %>
+                  <!-- Sender Message-->
+                  <div class="media mb-3 d-flex">
+                    <%= image_tag message.conversation.target_user(current_user).picture.url, alt:"#{message.conversation.target_user(current_user).name}", width:"50", height:"50", class:"rounded-circle" %>
+                    <div class="media-body ml-3 px-2">
+                      <div class="bg-light border rounded-pill py-2 px-3 mb-2 mt-2">
+                        <p class="text-small mb-0 text-muted"><%= message.content %></p>
+                      </div>
+                      <p class="small text-muted"><%= message.message_time %></p>
+                    </div>
+                  </div>
+                <% else %>
+                  <!-- Reciever Message-->
+                  <div class="media w-50 mb-3" style="margin-left: auto;">
+                    <div class="media-body">
+                      <div class="bg-primary rounded-pill py-2 px-3 mb-2">
+                        <p class="text-small mb-0 text-white"><%= message.content %></p>
+                      </div>
+                      <p class="small text-muted">
+                        <span class="me-4"><%= message.message_time %></span>
+                        <span>
+                          <% if message.read %>
+                            <i class="fas fa-check text-primary" title="Read"></i>
+                          <% else %>
+                            <i class="fas fa-check text-secondary" title="Not read"></i>
+                          <% end %>  
+                        </span>
+                      </p>
+                    </div>
+                  </div>
+                <% end %>
+
+              <% end %>
+            <% end %>
+    
+          </div>
+    
+          <!-- Typing area -->
+          <%= form_with(model: [@conversation, @message], class:"bg-light border rounded-pill") do |form| %>
+            <div class="input-group">
+              <%= form.text_field :content, placeholder:"Type a message", aria_describedby:"button-addon2", class:"form-control rounded-pill border-0 py-4 bg-light" %>
+              <%= form.text_field :user_id, value: current_user.id, type: "hidden"  %>
+
+              <div class="input-group-append my-auto" style="margin: 15px;">
+                <button id="button-addon2" type="submit" class="btn btn-link"><i class="fa fa-paper-plane h3"></i></button>
+              </div>
+
+            </div>
+          <% end %>
+    
+        </div>
+      </div>
+  </div>
+  <!-- end middle sidebar -->
+</div>
+

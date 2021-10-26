@@ -1,0 +1,147 @@
+<div class="container-fluid">
+  
+  <%= render "partials/sidebar_left" %>
+
+  <%= render "partials/sidebar_right" %>
+
+  <!-- Modal -->
+    <%= render "edit" %>
+    
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Picture</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <%= image_tag @question.picture.url, width:"100%", alt:"question #{@question.id}" %>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="addComment" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Post Comment</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <p class="fw-bold mt-4 mb-2">Your Comment</p>
+            <%= form_with(model: [@question, @question.comments.build], local: true) do |form| %>
+              <div class="mb-3">
+                <%= form.text_area :content, rows:"3", class:"form-control" %>
+              </div>
+              <%= form.submit "Post Your Comment", class:"btn btn-primary" %>
+            <% end %>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    
+  <!-- end Modal -->
+  
+
+  <div class="middle" style="padding-top: 100px;overflow: auto;">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div>
+          <h3><%= @question.title %></h3>
+          <p>
+            Asked <span class="fw-bold me-2"><%= @question.created_at.strftime("%b %m '%y at %H:%M") %></span>  
+            Viewed <span class="fw-bold">47 times</span>
+          </p>
+        </div><hr class="mt-2">
+        <div class="row">
+          <div class="col-sm-1">
+            <p class="text-center">
+
+              <% if @vote.present? %>
+                <%= link_to vote_path(id: @vote.id, note: 1), method: :put, class:"btn", title:"Vote up" do %>
+                  <i class="fas fa-sort-up h3 text-secondary"></i>
+                <% end %><br>
+                <span> <%= link_to "#{@question.votes.sum(:note)}", vote_path(id: @vote.id, note: 0), method: :put, class:"text-decoration-none text-dark", title:"Cancel vote" %></span><br>
+                <%= link_to vote_path(id: @vote.id, note: -1), method: :put, class:"btn", title:"Vote down" do %>
+                  <i class="fas fa-sort-down h3 text-secondary"></i>
+                <% end %><br>
+              <% else %>
+                <%= link_to votes_path(question_id: @question.id, note: 1), method: :post, class:"btn", title:"Vote up" do %>
+                  <i class="fas fa-sort-up h3 text-secondary"></i>
+                <% end %><br>
+                <span> <%= @question.votes.sum(:note) %></span><br>
+                <%= link_to votes_path(question_id: @question.id, note: -1), method: :post, class:"btn", title:"Vote down" do %>
+                  <i class="fas fa-sort-down h3 text-secondary"></i>
+                <% end %><br>
+              <% end %>
+
+              <% if @favorite.present? %>
+                <%= link_to favorite_path(@favorite), method: :delete, class:"" do %>
+                  <i class="fas fa-bookmark text-warning"></i>
+                <% end %>
+              <% else %>
+                <%= link_to favorites_path(question_id: @question.id), method: :post, class:"" do %>
+                  <i class="fas fa-bookmark text-secondary"></i>
+                <% end %>
+              <% end %>
+
+              <br>
+              <span><%= @question.favorites.count %></span>
+            </p>
+          </div>
+          <div class="col-sm-11">
+            <p style="text-align: justify;">
+              <%= @question.content %><br>
+              
+              <!-- Button trigger modal -->
+              <% if @question.picture.present? %>
+                <a class="mt-2 btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                  Show picture
+                </a>
+              <% end %>
+
+              <div class="row justify-content-between">
+                <div class="col-4">
+                  <% if current_user==@question.user %>
+                    <a href="#" title="edit question" class="me-2 text-decoration-none text-secondary" data-bs-toggle="modal" data-bs-target="#exampleModalEdit">
+                      Edit
+                    </a>
+                    <%= link_to "Delete", question_path(@question), method: :delete, title:"delete question", class:"me-2 text-decoration-none text-danger", data: {confirm: "This deletion is irreversible. Do you want to continue ?" } %>
+                  <% end %>
+                </div> 
+                <div class="col-4 border rounded-3 p-2" style="background-color: hsl(205deg 46% 92%); width: 30%;">
+                  <p class="text-secondary mb-0">asked <%= time_ago_converter(@question.created_at) %> ago</p>
+                  <%= image_tag user_picture_is_mounted_or_no(@question.user), width:"40px", alt:"#{@question.user.name}", class:"border border-secondary rounded-3 me-2" %>
+                  <a href="<%= user_path(@question.user) %>" class="text-decoration-none"><span><%= @question.user.name %></span></a>
+                </div>
+              </div>
+            </p>
+            
+            <%= render @question.comments %>
+
+            <a style="cursor: pointer" class="text-decoration-none" data-bs-toggle="modal" data-bs-target="#addComment">Add a comment</a>
+          </div>
+      </div>
+      
+      <p class="fw-bold mt-4"><%= @question.answers.count %> Answers</p>
+      
+      <%= render @question.answers %>
+
+    </div>
+    <%= render "answers/form" %>
+    <hr>
+    <!-- footer -->
+    <%= render "partials/footer" %>
+  </div>
+
+</div>
+
+

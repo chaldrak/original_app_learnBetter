@@ -1,0 +1,22 @@
+<%= form_with(model: question, local: true, url: choose_new_or_edit, class:"border p-3 shadow-lg") do |form| %>
+  <div id="emailHelp" class="form-text text-danger"><%= render "devise/shared/error_messages", resource: question %></div>
+  <div class="mb-3">
+    <%= form.label :title, class:"form-label fw-bold" %>
+    <%= form.text_field :title, class:"form-control", ariaDescribedby:"titleHelp", placeholder:"e.g. How to solve a differential equation ?" %>
+    <div id="titleHelp" class="form-text">Be specific and imagine you’re asking a question to another person</div>
+  </div>
+  <div class="mb-3">
+    <%= form.label :choose_a_picture, class:"form-label fw-bold" %>
+    <%= image_tag(@question.picture.url, width: "100%", class:"mb-3") if @question.picture && @question.picture.url %>
+    <%= form.file_field :picture, class:"form-control" %>
+    <%= form.hidden_field :picture_cache %>
+  </div>
+  <div class="mb-3">
+    <%= form.label :body, class:"form-label fw-bold" %>
+    <%= form.text_area :content, class:"form-control", ariaDescribedby:"body", rows:"3" %>
+    <div id="body" class="form-text">Include all the information someone would need to answer your question
+
+    </div>
+  </div>
+  <%= form.submit "Review your question", class:"btn btn-primary" %>
+<% end %>

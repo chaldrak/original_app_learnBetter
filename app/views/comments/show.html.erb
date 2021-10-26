@@ -1,0 +1,26 @@
+<p id="notice" style="margin-top:200px"><%= notice %></p>
+
+<p>
+  <strong>Content:</strong>
+  <%= @comment.content %>
+</p>
+
+<p>
+  <strong>Question:</strong>
+  <%= @comment.question.id if @comment.question %>
+</p>
+
+<p>
+  <strong>Answer:</strong>
+  <%= @comment.answer.id if @comment.answer %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @comment.user.name %>
+</p>
+
+
+<%= link_to 'Edit', edit_question_comment_path(@comment) %> |
+<%= link_to 'Back', question_comments_path %> 
+
