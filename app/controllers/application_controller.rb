@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
     respond_to do |format|
       if url.empty ?
         url: root_path
-        format.html { redirect_to url, alert: "You don't have any conversation." }
+        format.html { redirect_to url, alert: "Vous n'avez aucune conversations" }
         format.json { head :no_content }
       end
     end

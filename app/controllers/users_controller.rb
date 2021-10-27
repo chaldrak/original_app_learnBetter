@@ -12,7 +12,7 @@ class UsersController < ApplicationController
   def update
     respond_to do |format|
       if @user.update(user_params)
-        format.html { redirect_to @user, notice: "User profil was successfully updated." }
+        format.html { redirect_to @user, notice: "Votre profil a été mis à jour avec succès." }
         format.json { render :show, status: :ok, location: @user }
       end
     end

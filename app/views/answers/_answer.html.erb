@@ -14,7 +14,7 @@
       <% end %><br>
 
       <% if current_user == @question.user %>
-        <%= link_to set_good_answer_question_path(@question, answer_id: answer.id), method: :patch, data: {confirm: "Do you really want to set this answer as good answer ?"} do %>
+        <%= link_to set_good_answer_question_path(@question, answer_id: answer.id), method: :patch, data: {confirm: "Êtes-vous sûr de vouloir enrégistrer cette réponse comme correcte ?"} do %>
           <% if @question.solved and @question.answer_id == answer.id %>
             <i class="fas fa-check h3 text-success"></i>
           <% else %>
