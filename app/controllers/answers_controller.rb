@@ -27,6 +27,7 @@ class AnswersController < ApplicationController
     @answer.user_id = current_user.id
     respond_to do |format|
       if @answer.save
+        OrderMailer.with(order: @answer).new_order_email.deliver_now
         format.html { redirect_to @question, notice: "Answer was successfully created." }
         format.json { render :show, status: :created, location: @answer }
       else
