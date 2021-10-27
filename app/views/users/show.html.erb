@@ -16,7 +16,7 @@
                   <span><a href="#" class="text-decoration-none"><%= @user.name %></a></span><br>
                   <span class="text-secondary"><%= "#{@user.sector}, #{@user.faculty} - #{@user.university}" if @user.sector %></span><br>
                   <span class="text-secondary"><%= "#{@user.city}, #{@user.contact}" if @user.city %></span><br>
-                  <span class="text-secondary"><%= "Member since #{time_ago_converter(@user.created_at)}" %></span><br><br>
+                  <span class="text-secondary"><%= "#{I18n.t('others.messages.member_since')} #{time_ago_converter(@user.created_at)}" %></span><br><br>
                   <span class="text-primary text-decoration-underline"><%= @user.email %></span><br>
                 </p>
               </div>
@@ -24,7 +24,7 @@
             <div class="grid-item">
               <div class="d-flex justify-content-end">
                 <% if @user == current_user %>
-                  <a class="btn btn-light border-dark me-2" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fas fa-pencil"></i> Edit profile</a>
+                  <a class="btn btn-light border-dark me-2" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fas fa-pencil"></i> <%= I18n.t('others.button.edit_profile') %></a>
                 <% end %>
                 <% unless @user == current_user %>
                   <%= link_to conversations_path(sender_id: current_user.id, recipient_id: @user.id), method: :post, class:"btn btn-light border-dark" do %>
@@ -38,25 +38,25 @@
       <div class="row">
         <nav>
             <div class="nav nav-tabs" id="nav-tab" role="tablist">
-              <button class="nav-link active" id="nav-summary-tab" data-bs-toggle="tab" data-bs-target="#nav-summary" type="button" role="tab" aria-controls="nav-summary" aria-selected="true">Summary</button>
-              <button class="nav-link" id="nav-answers-tab" data-bs-toggle="tab" data-bs-target="#nav-answers" type="button" role="tab" aria-controls="nav-answers" aria-selected="false">Answers</button>
-              <button class="nav-link" id="nav-questions-tab" data-bs-toggle="tab" data-bs-target="#nav-questions" type="button" role="tab" aria-controls="nav-questions" aria-selected="false">Questions</button>
-              <button class="nav-link" id="nav-favorites-tab" data-bs-toggle="tab" data-bs-target="#nav-favorites" type="button" role="tab" aria-controls="nav-favorites" aria-selected="false">Favorites</button>
+              <button class="nav-link active" id="nav-summary-tab" data-bs-toggle="tab" data-bs-target="#nav-summary" type="button" role="tab" aria-controls="nav-summary" aria-selected="true"><%= I18n.t('others.button.summary') %></button>
+              <button class="nav-link" id="nav-answers-tab" data-bs-toggle="tab" data-bs-target="#nav-answers" type="button" role="tab" aria-controls="nav-answers" aria-selected="false"><%= I18n.t('others.button.answers') %></button>
+              <button class="nav-link" id="nav-questions-tab" data-bs-toggle="tab" data-bs-target="#nav-questions" type="button" role="tab" aria-controls="nav-questions" aria-selected="false"><%= I18n.t('others.button.questions') %></button>
+              <button class="nav-link" id="nav-favorites-tab" data-bs-toggle="tab" data-bs-target="#nav-favorites" type="button" role="tab" aria-controls="nav-favorites" aria-selected="false"><%= I18n.t('others.button.favorites') %></button>
             </div>
           </nav>
           <div class="tab-content" id="nav-tabContent">
             <div class="tab-pane fade show active" id="nav-summary" role="tabpanel" aria-labelledby="nav-summary-tab">
               <table class="table mt-4 mb-4 table-striped border">
                 <tbody>
-                    <th scope="row">Answers</th>
+                    <th scope="row"><%= I18n.t('others.button.answers') %></th>
                     <td><span class="badge rounded-pill bg-warning text-dark"><%= @user.answers.count %></span></td>
                   </tr>
                   <tr>
-                    <th scope="row">Questions</th>
+                    <th scope="row"><%= I18n.t('others.button.questions') %></th>
                     <td><span class="badge rounded-pill bg-warning text-dark"><%= @user.questions.count %></span></td>
                   </tr>
                   <tr>
-                    <th scope="row">Favorites</th>
+                    <th scope="row"><%= I18n.t('others.button.favorites') %></th>
                     <td><span class="badge rounded-pill bg-warning text-dark"><%= @user.favorites.count %></span></td>
                   </tr>
                 </tbody>

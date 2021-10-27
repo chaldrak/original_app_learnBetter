@@ -36,6 +36,9 @@ gem 'cancancan'
 # gem 'bcrypt', '~> 3.1.7'
 gem 'carrierwave', '~> 2.0'
 gem 'cloudinary'
+gem 'punching_bag'
+gem 'i18n_generators'
+gem 'devise-i18n'
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 

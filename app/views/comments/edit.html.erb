@@ -1,4 +1,4 @@
-<h1>Editing Comment</h1>
+<h1><%= I18n.t('others.messages.editing_comment') %></h1>
 
 <p class="fw-bold mt-4 mb-2">Your Answer</p>
 <%= form_with(model: [@question, @comment], local: true) do |form| %>
@@ -6,6 +6,6 @@
   <div class="mb-3">
     <%= form.text_area :content, rows:"3", class:"form-control" %>
   </div>
-  <%= form.submit "Post Your Comment", class:"btn btn-primary" %>
+  <%= form.submit I18n.t('others.button.post_your_comment'), class:"btn btn-primary" %>
 <% end %>
 

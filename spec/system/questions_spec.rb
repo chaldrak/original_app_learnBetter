@@ -7,7 +7,7 @@ RSpec.describe "Questions", type: :system do
     context "Lors de la création d'une question" do
       it "Sans le login" do
         visit root_path
-        click_on "Ask Question"
+        click_on "Poser une Question"
         expect(page).to have_content("You need to sign in or sign up before continuing.")  
       end
     end
@@ -61,9 +61,9 @@ RSpec.describe "Questions", type: :system do
         answer = FactoryBot.create(:answer, user: user, question: question)
         question.update(solved: true, answer_id: answer.id)
         visit root_path
-        click_on "Solved"
+        click_on "Résolues"
         expect(page).to have_content("Many variations on the standard lorem ipsum text exist")
-        click_on "Unsolved"
+        click_on "Non résolues"
         expect(page).not_to have_content("Many variations on the standard lorem ipsum text exist")
       end
     end
@@ -74,15 +74,15 @@ RSpec.describe "Questions", type: :system do
         question = FactoryBot.create(:question, user: user)
         visit root_path
         fill_in "quizz", with: "varia\n"
-        expect(page).to have_content("search with 'varia'")
+        expect(page).to have_content("Résultats trouvés pour 'varia'")
         expect(page).to have_content("Many variations on the standard lorem ipsum text exist")
         visit questions_path
         fill_in "quizz", with: "varia\n"
-        expect(page).to have_content("search with 'varia'")
+        expect(page).to have_content("Résultats trouvés pour 'varia'")
         expect(page).to have_content("Many variations on the standard lorem ipsum text exist")
-        click_on 'Register'
+        click_on 'Inscription'
         fill_in "quizz", with: "varia\n"
-        expect(page).to have_content("search with 'varia'")
+        expect(page).to have_content("Résultats trouvés pour 'varia'")
         expect(page).to have_content("Many variations on the standard lorem ipsum text exist")
       end
     end

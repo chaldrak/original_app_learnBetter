@@ -34,19 +34,19 @@
 
       <% if answer.picture.present? %>
         <a href="<%= answer.picture.url %>" class="nav-link" target="_blank" >
-          Show picture in another tab
+          <%= I18n.t('others.button.show_picture') %>
         </a>
       <% end %>
 
       <div class="row justify-content-between">
         <div class="col-4">
           <% if current_user==answer.user %>
-            <%= link_to "Edit", edit_question_answer_path(answer.question, answer), title:"edit answer", class:"me-2 text-decoration-none text-secondary" %>
-            <%= link_to "Delete", question_answer_path(answer.question, answer), method: :delete, title:"delete answer", class:"me-2 text-decoration-none text-danger", data: {confirm: "This deletion is irreversible. Do you want to continue ?" } %>
+            <%= link_to I18n.t('others.button.edit'), edit_question_answer_path(answer.question, answer), title:"edit answer", class:"me-2 text-decoration-none text-secondary" %>
+            <%= link_to I18n.t('others.button.delete'), question_answer_path(answer.question, answer), method: :delete, title:"delete answer", class:"me-2 text-decoration-none text-danger", data: {confirm: "Cette action est irréversible. Voulez-vous vraiment continuer ?" } %>
           <% end %>
         </div> 
         <div class="col-4 border rounded-3 p-2" style="background-color: hsl(205deg 46% 92%); width: 30%;">
-          <p class="text-secondary mb-0">answered <%= time_ago_converter(answer.created_at) %> ago</p>
+          <p class="text-secondary mb-0"><%= I18n.t('others.messages.answered_ago') %> <%= time_ago_converter(answer.created_at) %></p>
           <%= image_tag user_picture_is_mounted_or_no(answer.user), width:"40px", alt:"#{answer.user.name}", class:"border border-secondary rounded-3 me-2" %>
           <a href="<%= user_path(answer.user) %>" class="text-decoration-none"><span><%= answer.user.name %></span></a>
         </div>
@@ -56,23 +56,23 @@
     <%= render answer.comments %>
 
     <hr class="mt-2">
-    <a style="cursor: pointer" class="text-decoration-none" data-bs-toggle="modal" data-bs-target="#addCommentAnswer<%= answer.id %>">Add a comment</a>
+    <a style="cursor: pointer" class="text-decoration-none" data-bs-toggle="modal" data-bs-target="#addCommentAnswer<%= answer.id %>"><%= I18n.t('others.button.add_a_comment') %></a>
     
     
     <div class="modal fade" id="addCommentAnswer<%= answer.id %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+            <h5 class="modal-title" id="exampleModalLabel">Commenter</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-            <p class="fw-bold mt-4 mb-2">Your Answer</p>
+            <p class="fw-bold mt-4 mb-2"><%= I18n.t('others.messages.your_comment') %></p>
               <%= form_with(model: [answer, answer.comments.build], local: true) do |form| %>
                 <div class="mb-3">
                   <%= form.text_area :content, rows:"3", class:"form-control" %>
                 </div>
-                <%= form.submit "Post Your Comment", class:"btn btn-primary" %>
+                <%= form.submit I18n.t('others.button.post_your_comment'), class:"btn btn-primary" %>
               <% end %>
           </div>
           <div class="modal-footer">

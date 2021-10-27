@@ -92,6 +92,8 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
+    devise-i18n (1.10.0)
+      devise (>= 4.8.0)
     devise-specs (0.0.5)
       devise (~> 4.8)
     diff-lcs (1.4.4)
@@ -141,6 +143,9 @@ GEM
       domain_name (~> 0.5)
     i18n (1.8.10)
       concurrent-ruby (~> 1.0)
+    i18n_generators (2.2.2)
+      activerecord (>= 3.0.0)
+      railties (>= 3.0.0)
     image_processing (1.12.1)
       mini_magick (>= 4.9.5, < 5)
       ruby-vips (>= 2.0.17, < 3)
@@ -226,6 +231,9 @@ GEM
     pg (1.2.3)
     public_suffix (4.0.6)
     puma (3.12.6)
+    punching_bag (0.7.0)
+      railties (>= 3.2)
+      voight_kampff (>= 1.0)
     racc (1.6.0)
     rack (2.2.3)
     rack-pjax (1.1.0)
@@ -357,6 +365,8 @@ GEM
     unf (0.1.4)
       unf_ext
     unf_ext (0.0.8)
+    voight_kampff (1.1.4)
+      rack (>= 1.4, < 3.0)
     warden (1.2.9)
       rack (>= 2.0.9)
     web-console (3.7.0)
@@ -386,10 +396,12 @@ DEPENDENCIES
   cloudinary
   coffee-rails (~> 4.2)
   devise
+  devise-i18n
   devise-specs
   dotenv-rails
   factory_bot_rails
   faker
+  i18n_generators
   jbuilder (~> 2.5)
   letter_opener_web
   listen (>= 3.0.5, < 3.2)
@@ -399,6 +411,7 @@ DEPENDENCIES
   omniauth-rails_csrf_protection
   pg (>= 0.18, < 2.0)
   puma (~> 3.11)
+  punching_bag
   rails (~> 5.2.5)
   rails_admin (~> 2.0)
   rexml

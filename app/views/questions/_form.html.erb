@@ -3,7 +3,7 @@
   <div class="mb-3">
     <%= form.label :title, class:"form-label fw-bold" %>
     <%= form.text_field :title, class:"form-control", ariaDescribedby:"titleHelp", placeholder:"e.g. How to solve a differential equation ?" %>
-    <div id="titleHelp" class="form-text">Be specific and imagine you’re asking a question to another person</div>
+    <div id="titleHelp" class="form-text">Soyez précis et imaginez que vous posez une question à une autre personne</div>
   </div>
   <div class="mb-3">
     <%= form.label :choose_a_picture, class:"form-label fw-bold" %>
@@ -14,9 +14,9 @@
   <div class="mb-3">
     <%= form.label :body, class:"form-label fw-bold" %>
     <%= form.text_area :content, class:"form-control", ariaDescribedby:"body", rows:"3" %>
-    <div id="body" class="form-text">Include all the information someone would need to answer your question
+    <div id="body" class="form-text">Incluez toutes les informations dont quelqu'un aurait besoin pour répondre à votre question
 
     </div>
   </div>
-  <%= form.submit "Review your question", class:"btn btn-primary" %>
+  <%= form.submit I18n.t('others.button.review_your_question'), class:"btn btn-primary" %>
 <% end %>

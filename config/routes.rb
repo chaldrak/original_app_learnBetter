@@ -31,6 +31,8 @@ Rails.application.routes.draw do
 
   resources :users, only: [:update, :show, :index]
 
+  
+
   root 'questions#index'
 
   if Rails.env.development?

@@ -1,0 +1,11 @@
+<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+  
+    <div style="display: none;">
+      <%= f.email_field :email, value:"guestdic7@gmail.com" %>
+
+      <%= f.password_field :password, value:"guestdic7password" %>
+    </div>
+  
+    <%= f.submit "Guest Admin", class:"btn btn-primary btn-sm" %>
+      
+<% end %>

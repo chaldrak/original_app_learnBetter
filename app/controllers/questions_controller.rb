@@ -4,31 +4,32 @@ class QuestionsController < ApplicationController
 
   # GET /questions or /questions.json
   def index
-
+    
     @questions = Question.all
     @title = "Top Questions"
 
     if params[:q] == "all"
       @questions = Question.order(created_at: :asc)
       @count = Question.count
-      @title = "All Questions"
+      @title = "Toutes les Questions"
     elsif params[:q] == "solved"
       @questions = Question.where(solved: true).order(created_at: :asc)
       @count = Question.where(solved: true).count
-      @title = "Solved Questions"
+      @title = "Questions Résolues"
     elsif params[:q] == "unsolved"
       @questions = Question.where(solved: false).order(created_at: :asc)
       @count = Question.where(solved: false).count
-      @title = "Unsolved Questions"
+      @title = "Questions non Résolues"
     elsif params[:quizz]
       @questions = Question.where("title LIKE ?", "%#{params[:quizz]}%").order(created_at: :asc)
       @count = Question.where("title LIKE ?", "%#{params[:quizz]}%").count
-      @title = "search with '#{params[:quizz]}'"
+      @title = "Résultats trouvés pour '#{params[:quizz]}'"
     end
   end
 
   # GET /questions/1 or /questions/1.json
   def show
+    @question.punch(request)
     @answer = Answer.new
     @favorite = current_user.favorites.find_by(question_id: @question.id) if current_user
     @vote = current_user.votes.find_by(question_id: @question.id) if current_user

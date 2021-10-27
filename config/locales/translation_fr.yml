@@ -1,0 +1,95 @@
+fr:
+  activerecord:
+    models:
+      answer: Réponse  #g
+      comment: Commenter  #g
+      conversation: Conversation  #g
+      favorite: Favori  #g
+      job: Travail  #g
+      message: Un message  #g
+      question: Question  #g
+      user: Utilisateur  #g
+      vote: Voter  #g
+
+    attributes:
+      answer:
+        comments: commentaires  #g
+        content: Teneur  #g
+        picture: Photo  #g
+        question: :activerecord.models.question  #g
+        user: :activerecord.models.user  #g
+        votes: Votes  #g
+
+      comment:
+        answer: :activerecord.models.answer  #g
+        content: Teneur  #g
+        question: :activerecord.models.question  #g
+        user: :activerecord.models.user  #g
+
+      conversation:
+        messages: messages  #g
+        recipient: :activerecord.models.recipient  #g
+        sender: :activerecord.models.sender  #g
+
+      favorite:
+        question: :activerecord.models.question  #g
+        user: :activerecord.models.user  #g
+
+      job:
+        content: Teneur  #g
+        title: Titre  #g
+        user: :activerecord.models.user  #g
+
+      message:
+        content: Teneur  #g
+        conversation: :activerecord.models.conversation  #g
+        read: Lire  #g
+        user: :activerecord.models.user  #g
+
+      question:
+        answers: Réponses  #g
+        comments: commentaires  #g
+        content: Teneur  #g
+        favorites: Favoris  #g
+        picture: Photo  #g
+        punches: Poinçons  #g
+        solved: Résolu  #g
+        title: Titre  #g
+        user: :activerecord.models.user  #g
+        votes: Votes  #g
+
+      user:
+        answers: Réponses  #g
+        city: Ville  #g
+        comments: commentaires  #g
+        confirmation_sent_at: Confirmation envoyée à  #g
+        confirmation_token: Jeton de confirmation  #g
+        confirmed_at: Confirmé à  #g
+        contact: Contact  #g
+        current_sign_in_at: Connexion actuelle à  #g
+        current_sign_in_ip: IP de connexion actuelle  #g
+        email: E-mail  #g
+        encrypted_password: Mot de passe crypté  #g
+        faculty: la faculté  #g
+        favorites: Favoris  #g
+        is_admin: Est administrateur  #g
+        last_sign_in_at: Dernière connexion à  #g
+        last_sign_in_ip: Dernière connexion IP  #g
+        name: Nom  #g
+        picture: Photo  #g
+        provider: Fournisseur  #g
+        questions: Des questions  #g
+        remember_created_at: Rappelez-vous créé à  #g
+        reset_password_sent_at: Réinitialiser le mot de passe envoyé à  #g
+        reset_password_token: Réinitialiser le jeton de mot de passe  #g
+        sector: Secteur  #g
+        uid: UID  #g
+        unconfirmed_email: E-mail non confirmé  #g
+        university: Université  #g
+        votes: Votes  #g
+
+      vote:
+        answer: :activerecord.models.answer  #g
+        note: Noter  #g
+        question: :activerecord.models.question  #g
+        user: :activerecord.models.user  #g
