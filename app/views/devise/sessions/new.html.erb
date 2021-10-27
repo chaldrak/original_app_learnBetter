@@ -4,22 +4,22 @@
         <img src="/img/lb.jpg" alt="logo" width="200px">
     </div>
     <%= link_to user_google_omniauth_authorize_path, method: :post, class:"border border-dark rounded-pill text-center w-100 btn btn-light mb-4" do %>
-        <i class="fab fa-google text-danger"></i> Log in with Google
+        <i class="fab fa-google text-danger"></i> <%= I18n.t('devise.shared.links.sign_in_with_google') %>
     <% end %>
     <%= link_to user_facebook_omniauth_authorize_path, method: :post, class:"border border-primary rounded-pill text-center w-100 btn btn-primary mb-4" do %>
-        <i class="fab fa-facebook text-light"></i> Log in with Facebook
+        <i class="fab fa-facebook text-light"></i> <%= I18n.t('devise.shared.links.sign_in_with_facebook') %>
     <% end %>
     <div href="#" class="border border-dark rounded-3 p-4 w-100 mb-4">
         <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
             <div class="mb-3">
-              <%= f.label "Email address", class:"form-label" %>
+              <%= f.label I18n.t('activerecord.attributes.user.email'), class:"form-label" %>
               <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"form-control", ariaDescribedby:"emailHelp" %>
               <div id="emailHelp" class="form-text text-danger"><%= alert %></div>
             </div>
             <div class="mb-3">
               <div class="d-flex justify-content-between">
-                <%= f.label "Password", class:"form-label" %>
-                <%= link_to "Forgot password", new_user_password_path, class:"text-decoration-none" %>
+                <%= f.label I18n.t('activerecord.attributes.user.password'), class:"form-label" %>
+                <%= link_to I18n.t('devise.shared.links.forgot_your_password'), new_user_password_path, class:"text-decoration-none" %>
               </div>
               <%= f.password_field :password, autocomplete: "current-password", class:"form-control" %>
             </div>
@@ -30,10 +30,15 @@
               </div>
             <% end %>
             <div class="d-flex justify-content-between">
-              <%= f.submit "Sign in", class:"btn btn-primary" %>
-              <p>Don't have an account ? <%= link_to "Register", new_user_registration_path, class:"text-decoration-none" %></p>
+              <%= f.submit I18n.t('devise.shared.links.sign_in'), class:"btn btn-primary" %>
+              <p><%= I18n.t('devise.shared.links.Don_t_have_an_account') %> <%= link_to I18n.t('devise.shared.links.Register'), new_user_registration_path, class:"text-decoration-none" %></p>
             </div>
         <% end %>
+        <div class="mt-2 d-flex justify-content-end ">
+          <%= render "partials/guest" %>
+          <div class="me-2"></div>
+          <%= render "partials/guest_admin" %>
+        </div>
     </div>
   </div>
 </div>

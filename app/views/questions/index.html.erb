@@ -10,7 +10,7 @@
         <div class="row mb-2">
           <div class="d-flex justify-content-between">
               <h3><%= @title %></h3>
-              <%= link_to "Ask Question", new_question_path, class:"btn btn-primary" %>
+              <%= link_to I18n.t('others.button.ask_question'), new_question_path, class:"btn btn-primary" %>
           </div>
           <p class="text-secondary h5 mt-2"><%= "#{@count} questions" if @count %></p>
           <hr class="mt-2">
@@ -22,14 +22,14 @@
               <td><%= question.votes.sum(:note) %> <br> <%= "vote".pluralize(question.votes.sum(:note)) %></td>
               <td class="mx-auto">
                 <% if question.solved %>
-                  <div class="pt-2 pb-2 bg-success border border-success rounded-3 text-light"><%= question.answers.count %> <br> <%= "answer".pluralize(question.answers.count) %></div>
+                  <div class="pt-2 pb-2 bg-success border border-success rounded-3 text-light"><%= question.answers.count %> <br> <%= "#{I18n.t('others.messages.answer')}".pluralize(question.answers.count) %></div>
                 <% else %>
-                  <div class="pt-2 pb-2 border border-success rounded-3 text-success"><%= question.answers.count %> <br> <%= "answer".pluralize(question.answers.count) %></div>
+                  <div class="pt-2 pb-2 border border-success rounded-3 text-success"><%= question.answers.count %> <br> <%= "#{I18n.t('others.messages.answer')}".pluralize(question.answers.count) %></div>
                 <% end %>
               </td>
-              <td><%= question.hits %> <br> <%= "view".pluralize(question.hits) %> </td>
+              <td><%= question.hits %> <br> <%= "#{I18n.t('others.messages.view')}".pluralize(question.hits) %> </td>
               <td><%= link_to "#{question.title}", question_path(question), class:"nav-link" %></td>
-              <td><br> answered <%= time_ago_converter(question.created_at) %> ago <%= link_to "#{question.user.name}", user_path(question.user) %></td>
+              <td><br> <%= I18n.t('others.messages.asked_ago') %> <%= time_ago_converter(question.created_at) %> <%= link_to "#{question.user.name}", user_path(question.user), class:"text-decoration-none" %></td>
             </tr>
           <% end %>
           </table>

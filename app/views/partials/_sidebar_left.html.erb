@@ -4,7 +4,7 @@
       <li>
           <a href="/" class="">
               <span class="icon"><i class="fas fa-home"></i></span>
-              <span class="item">Home</span>
+              <span class="item"><%= I18n.t('others.menu.home') %></span>
           </a>
       </li>
       <li>
@@ -16,19 +16,19 @@
           <li>
               <a href="<%= questions_path(q: "all") %>">
               <span class="icon"><i class="fas fa-globe"></i></span>
-              <span class="item">All</span>
+              <span class="item"><%= I18n.t('others.menu.all') %></span>
               </a>
           </li>
           <li>
               <a href="<%= questions_path(q: "solved") %>">
               <span class="icon"><i class="fas fa-check-double"></i></span>
-              <span class="item">Solved</span>
+              <span class="item"><%= I18n.t('others.menu.solved') %></span>
               </a>
           </li>
           <li>
               <a href="<%= questions_path(q: "unsolved") %>">
               <span class="icon"><i class="fas fa-ban"></i></span>
-              <span class="item">Unsolved</span>
+              <span class="item"><%= I18n.t('others.menu.unsolved') %></span>
               </a>
           </li>
           </ul>
@@ -36,20 +36,20 @@
       <li>
           <a href="/users">
               <span class="icon"><i class="fas fa-user-friends"></i></span>
-              <span class="item">Users</span>
+              <span class="item"><%= I18n.t('others.menu.users') %></span>
           </a>
       </li>
       <li>
           <a href="#">
               <span class="icon"><i class="fas fa-tachometer-alt"></i></span>
-              <span class="item">Find a Job</span>
+              <span class="item"><%= I18n.t('others.menu.find_a_job') %></span>
           </a>
       </li>
       <li>
           <% if current_user.try(:is_admin?) %>
           <a href="/admin">
               <span class="icon"><i class="fas fa-user-shield"></i></span>
-              <span class="item">Admin Mode</span>
+              <span class="item">Mode Admin</span>
           </a>
           <% end %>
       </li>

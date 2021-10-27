@@ -28,16 +28,16 @@
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Post Comment</h5>
+            <h5 class="modal-title" id="exampleModalLabel"><%= I18n.t('others.messages.post_comment') %></h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-            <p class="fw-bold mt-4 mb-2">Your Comment</p>
+            <p class="fw-bold mt-4 mb-2"><%= I18n.t('others.messages.your_comment') %></p>
             <%= form_with(model: [@question, @question.comments.build], local: true) do |form| %>
               <div class="mb-3">
                 <%= form.text_area :content, rows:"3", class:"form-control" %>
               </div>
-              <%= form.submit "Post Your Comment", class:"btn btn-primary" %>
+              <%= form.submit I18n.t('others.button.post_your_comment'), class:"btn btn-primary" %>
             <% end %>
           </div>
           <div class="modal-footer">
@@ -57,8 +57,8 @@
         <div>
           <h3><%= @question.title %></h3>
           <p>
-            Asked <span class="fw-bold me-2"><%= @question.created_at.strftime("%b %m '%y at %H:%M") %></span>  
-            Viewed <span class="fw-bold"><%= @question.hits %> times</span>
+            <%= I18n.t('others.messages.asked') %> <span class="fw-bold me-2"><%= @question.created_at.strftime("%m %b %y à %H:%M") %></span>  
+            <%= I18n.t('others.messages.viewed') %> <span class="fw-bold"><%= @question.hits %> <%= I18n.t('others.messages.times') %></span>
           </p>
         </div><hr class="mt-2">
         <div class="row">
@@ -104,7 +104,7 @@
               <!-- Button trigger modal -->
               <% if @question.picture.present? %>
                 <a class="mt-2 btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                  Show picture
+                  <%= I18n.t('others.button.show_picture') %>
                 </a>
               <% end %>
 
@@ -112,13 +112,13 @@
                 <div class="col-4">
                   <% if current_user==@question.user %>
                     <a href="#" title="edit question" class="me-2 text-decoration-none text-secondary" data-bs-toggle="modal" data-bs-target="#exampleModalEdit">
-                      Edit
+                      <%= I18n.t('others.button.edit') %>
                     </a>
-                    <%= link_to "Delete", question_path(@question), method: :delete, title:"delete question", class:"me-2 text-decoration-none text-danger", data: {confirm: "This deletion is irreversible. Do you want to continue ?" } %>
+                    <%= link_to I18n.t('others.button.delete'), question_path(@question), method: :delete, title:"delete question", class:"me-2 text-decoration-none text-danger", data: {confirm: "This deletion is irreversible. Do you want to continue ?" } %>
                   <% end %>
                 </div> 
                 <div class="col-4 border rounded-3 p-2" style="background-color: hsl(205deg 46% 92%); width: 30%;">
-                  <p class="text-secondary mb-0">asked <%= time_ago_converter(@question.created_at) %> ago</p>
+                  <p class="text-secondary mb-0"><%= I18n.t('others.messages.asked_ago') %> <%= time_ago_converter(@question.created_at) %></p>
                   <%= image_tag user_picture_is_mounted_or_no(@question.user), width:"40px", alt:"#{@question.user.name}", class:"border border-secondary rounded-3 me-2" %>
                   <a href="<%= user_path(@question.user) %>" class="text-decoration-none"><span><%= @question.user.name %></span></a>
                 </div>
@@ -127,11 +127,11 @@
             
             <%= render @question.comments %>
 
-            <a style="cursor: pointer" class="text-decoration-none" data-bs-toggle="modal" data-bs-target="#addComment">Add a comment</a>
+            <a style="cursor: pointer" class="text-decoration-none" data-bs-toggle="modal" data-bs-target="#addComment"><%= I18n.t('others.button.add_a_comment') %></a>
           </div>
       </div>
       
-      <p class="fw-bold mt-4"><%= @question.answers.count %> Answers</p>
+      <p class="fw-bold mt-4"><%= @question.answers.count %> <%= "#{I18n.t('others.messages.answer')}".pluralize(@question.answers.count).capitalize %></p>
       
       <%= render @question.answers %>
 

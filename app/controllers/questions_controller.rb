@@ -11,19 +11,19 @@ class QuestionsController < ApplicationController
     if params[:q] == "all"
       @questions = Question.order(created_at: :asc)
       @count = Question.count
-      @title = "All Questions"
+      @title = "Toutes les Questions"
     elsif params[:q] == "solved"
       @questions = Question.where(solved: true).order(created_at: :asc)
       @count = Question.where(solved: true).count
-      @title = "Solved Questions"
+      @title = "Questions Résolues"
     elsif params[:q] == "unsolved"
       @questions = Question.where(solved: false).order(created_at: :asc)
       @count = Question.where(solved: false).count
-      @title = "Unsolved Questions"
+      @title = "Questions non Résolues"
     elsif params[:quizz]
       @questions = Question.where("title LIKE ?", "%#{params[:quizz]}%").order(created_at: :asc)
       @count = Question.where("title LIKE ?", "%#{params[:quizz]}%").count
-      @title = "search with '#{params[:quizz]}'"
+      @title = "Résultats trouvés pour '#{params[:quizz]}'"
     end
   end
 

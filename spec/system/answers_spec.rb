@@ -8,8 +8,8 @@ RSpec.describe "Answers", type: :system do
       question = FactoryBot.create(:question, user: user)
       visit root_path
       click_on "Many variations on the standard lorem ipsum text exist"
-      expect(page).to have_content("Your Answer")
-      expect(page).to have_content("Choose a picture")
+      expect(page).to have_content("Votre Réponse")
+      expect(page).to have_content("Choisir une image")
     end
   end
 
