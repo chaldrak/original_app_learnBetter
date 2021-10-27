@@ -4,19 +4,15 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <p>You got a new order from <%= @order.name %>!</p>
+    <p>You got a answer from <%= @sender.name %>!</p>
     <p>
     Order details<br>
     --------------------------
     </p>
-    <p>Name: <%= @order.name %></p>
-    <p>Email: <%= @order.email %></p>
-    <p>Address: <%= @order.address %></p>
-    <p>Phone: <%= @order.phone %></p>
-    <p>
-    Message:<br>
+    <%= link_to "Click this button", question_path(@answer.question), class:"btn btn-primary" %>
+    <p><br>
     ----------
     </p>
-    <p><%= @order.message %></p>
+    <p>Learn Better - 2021</p>
   </body>
 </html>
