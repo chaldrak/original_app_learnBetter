@@ -4,7 +4,7 @@ class QuestionsController < ApplicationController
 
   # GET /questions or /questions.json
   def index
-
+    
     @questions = Question.all
     @title = "Top Questions"
 
@@ -29,6 +29,7 @@ class QuestionsController < ApplicationController
 
   # GET /questions/1 or /questions/1.json
   def show
+    @question.punch(request)
     @answer = Answer.new
     @favorite = current_user.favorites.find_by(question_id: @question.id) if current_user
     @vote = current_user.votes.find_by(question_id: @question.id) if current_user

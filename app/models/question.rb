@@ -12,6 +12,8 @@ class Question < ApplicationRecord
   validates :title, length: {minimum: 20}
   validates :content, presence: true
 
+  acts_as_punchable
+
   def set_solved_as_false
     self.solved = false
   end

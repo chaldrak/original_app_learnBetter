@@ -27,7 +27,7 @@
                   <div class="pt-2 pb-2 border border-success rounded-3 text-success"><%= question.answers.count %> <br> <%= "answer".pluralize(question.answers.count) %></div>
                 <% end %>
               </td>
-              <td>12 <br> views</td>
+              <td><%= question.hits %> <br> <%= "view".pluralize(question.hits) %> </td>
               <td><%= link_to "#{question.title}", question_path(question), class:"nav-link" %></td>
               <td><br> answered <%= time_ago_converter(question.created_at) %> ago <%= link_to "#{question.user.name}", user_path(question.user) %></td>
             </tr>

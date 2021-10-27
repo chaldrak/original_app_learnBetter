@@ -226,6 +226,9 @@ GEM
     pg (1.2.3)
     public_suffix (4.0.6)
     puma (3.12.6)
+    punching_bag (0.7.0)
+      railties (>= 3.2)
+      voight_kampff (>= 1.0)
     racc (1.6.0)
     rack (2.2.3)
     rack-pjax (1.1.0)
@@ -357,6 +360,8 @@ GEM
     unf (0.1.4)
       unf_ext
     unf_ext (0.0.8)
+    voight_kampff (1.1.4)
+      rack (>= 1.4, < 3.0)
     warden (1.2.9)
       rack (>= 2.0.9)
     web-console (3.7.0)
@@ -399,6 +404,7 @@ DEPENDENCIES
   omniauth-rails_csrf_protection
   pg (>= 0.18, < 2.0)
   puma (~> 3.11)
+  punching_bag
   rails (~> 5.2.5)
   rails_admin (~> 2.0)
   rexml

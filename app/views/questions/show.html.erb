@@ -58,7 +58,7 @@
           <h3><%= @question.title %></h3>
           <p>
             Asked <span class="fw-bold me-2"><%= @question.created_at.strftime("%b %m '%y at %H:%M") %></span>  
-            Viewed <span class="fw-bold">47 times</span>
+            Viewed <span class="fw-bold"><%= @question.hits %> times</span>
           </p>
         </div><hr class="mt-2">
         <div class="row">
