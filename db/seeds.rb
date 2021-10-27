@@ -5,13 +5,63 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-user = User.create(
-    name: "admin",
+admin = User.create!(
+    name: "administrateur",
     email: "chaldrakus@gmail.com",
-    is_admin: true
+    password: "123456",
+    is_admin: true,
+    uid: 2001
 )
-Job.create(
-    title: "My first Job",
-    content: "content of my first job. You can congratulate me.",
-    user: user
+
+user1 = User.create!(
+    name: "Joe Doe",
+    email: "joe@doe.com",
+    password: "123456",
+    uid: 1111
 )
+
+user2 = User.create!(
+    name: "Minato Namikaze",
+    email: "minato@app.com",
+    password: "123456",
+    uid: 402
+)
+
+10.times do |n|
+    User.create!(
+        name: Faker::Name.name,
+        email: Faker::Internet.email,
+        password: "123456",
+        uid: n
+    )
+end
+
+Job.create!(
+    title: Faker::Lorem.sentences(number: 1),
+    content: Faker::Lorem.paragraphs(number: 1),
+    user: admin
+)
+
+15.times do
+    Question.create!(
+        title: Faker::Lorem.question(word_count: 6),
+        content: Faker::Lorem.paragraphs,
+        user: admin
+    )
+end
+
+15.times do
+    Question.create!(
+        title: Faker::Lorem.question(word_count: 6),
+        content: Faker::Lorem.paragraphs,
+        user: user1
+    )
+end
+
+15.times do
+    Question.create!(
+        title: Faker::Lorem.question(word_count: 6),
+        content: Faker::Lorem.paragraphs,
+        user: user2
+    )
+end

@@ -35,10 +35,10 @@ class CommentsController < ApplicationController
     @comment.user_id = current_user.id
     respond_to do |format|
       if @comment.save
-        format.html { redirect_to (@comment.question || @answer.question), notice: "Comment was successfully created." }
+        format.html { redirect_to (@comment.question || @answer.question), notice: "Commentaire crée avec succès." }
         format.json { render :show, status: :created, location: @comment }
       else
-        format.html { redirect_to (@comment.question || @answer.question), alert: "Comment creation aborted. Content can't be blank" }
+        format.html { redirect_to (@comment.question || @answer.question), alert: "Erreur d'enrégistrement. Contenu vide" }
         format.json { render json: @comment.errors, status: :unprocessable_entity }
       end
     end
@@ -48,10 +48,10 @@ class CommentsController < ApplicationController
   def update
     respond_to do |format|
       if @comment.update(comment_params)
-        format.html { redirect_to (@comment.question || @comment.answer.question), notice: "Comment was successfully updated." }
+        format.html { redirect_to (@comment.question || @comment.answer.question), notice: "Commentaire mis à jour." }
         format.json { render :show, status: :ok, location: @comment }
       else
-        format.html { redirect_to (@comment.question || @comment.answer.question), alert: "Comment editing aborted. Content can't be blank" }
+        format.html { redirect_to (@comment.question || @comment.answer.question), alert: "Erreur de modification. Contenu vide" }
         format.json { render json: @comment.errors, status: :unprocessable_entity }
       end
     end
@@ -62,7 +62,7 @@ class CommentsController < ApplicationController
     target = (@comment.question || @comment.answer.question)
     @comment.destroy
     respond_to do |format|
-      format.html { redirect_to target, alert: "Comment was successfully destroyed." }
+      format.html { redirect_to target, alert: "Commentaire supprimé." }
       format.json { head :no_content }
     end
   end

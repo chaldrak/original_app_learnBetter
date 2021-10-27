@@ -26,7 +26,7 @@ class VotesController < ApplicationController
 
     respond_to do |format|
       if @vote.save
-        format.html { redirect_to (@vote.question || @vote.answer.question), notice: "Vote successfully saved." }
+        format.html { redirect_to (@vote.question || @vote.answer.question), notice: "Vote enrégistré." }
         format.json { render :show, status: :created, location: @vote }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -40,7 +40,7 @@ class VotesController < ApplicationController
     @vote = current_user.votes.find(params[:id])
     respond_to do |format|
       if @vote.update(note: params[:note])
-        format.html { redirect_to @vote.question, notice: "Vote successfully saved." }
+        format.html { redirect_to @vote.question, notice: "Vote enrégistré." }
         format.json { render :show, status: :ok, location: @vote }
       else
         format.html { render :edit, status: :unprocessable_entity }

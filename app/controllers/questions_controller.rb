@@ -55,7 +55,7 @@ class QuestionsController < ApplicationController
     
     respond_to do |format|
       if @question.save
-        format.html { redirect_to @question, notice: "Question was successfully created." }
+        format.html { redirect_to @question, notice: "Question postée avec succès." }
         format.json { render :show, status: :created, location: @question }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -68,7 +68,7 @@ class QuestionsController < ApplicationController
   def update
     respond_to do |format|
       if @question.update(question_params)
-        format.html { redirect_to @question, notice: "Question was successfully updated." }
+        format.html { redirect_to @question, notice: "Question mise à jour." }
         format.json { render :show, status: :ok, location: @question }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -83,7 +83,7 @@ class QuestionsController < ApplicationController
     @question.solved = true
     respond_to do |format|
       if @question.update(answer_id: params[:answer_id])
-        format.html { redirect_to @question, notice: "Question was solved." }
+        format.html { redirect_to @question, notice: "Question résolue." }
         format.json { render :show, status: :ok, location: @question }
       end
     end
@@ -93,7 +93,7 @@ class QuestionsController < ApplicationController
   def destroy
     @question.destroy
     respond_to do |format|
-      format.html { redirect_to questions_url, alert: "Question was successfully destroyed." }
+      format.html { redirect_to questions_url, alert: "Question supprimée avec succès." }
       format.json { head :no_content }
     end
   end

@@ -114,7 +114,7 @@
                     <a href="#" title="edit question" class="me-2 text-decoration-none text-secondary" data-bs-toggle="modal" data-bs-target="#exampleModalEdit">
                       <%= I18n.t('others.button.edit') %>
                     </a>
-                    <%= link_to I18n.t('others.button.delete'), question_path(@question), method: :delete, title:"delete question", class:"me-2 text-decoration-none text-danger", data: {confirm: "This deletion is irreversible. Do you want to continue ?" } %>
+                    <%= link_to I18n.t('others.button.delete'), question_path(@question), method: :delete, title:"delete question", class:"me-2 text-decoration-none text-danger", data: {confirm: "Cette action est irréversible. Voulez-vous vraiment continuer ?" } %>
                   <% end %>
                 </div> 
                 <div class="col-4 border rounded-3 p-2" style="background-color: hsl(205deg 46% 92%); width: 30%;">

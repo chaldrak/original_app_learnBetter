@@ -30,10 +30,10 @@ class AnswersController < ApplicationController
     respond_to do |format|
       if @answer.save
         OrderMailer.with(order: @answer).new_order_email.deliver_now
-        format.html { redirect_to @question, notice: "Answer was successfully created." }
+        format.html { redirect_to @question, notice: "Réponse enrégistrée avec succès" }
         format.json { render :show, status: :created, location: @answer }
       else
-        format.html { redirect_to @question, alert: "Answer blank can't be created" }
+        format.html { redirect_to @question, alert: "Erreur de création, réponse vide" }
         format.json { render json: @answer.errors, status: :unprocessable_entity }
       end
     end
@@ -43,7 +43,7 @@ class AnswersController < ApplicationController
   def update
     respond_to do |format|
       if @answer.update(answer_params)
-        format.html { redirect_to @answer.question, notice: "Answer was successfully updated." }
+        format.html { redirect_to @answer.question, notice: "Réponse modifiée avec succès." }
         format.json { render :show, status: :ok, location: @answer }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -57,7 +57,7 @@ class AnswersController < ApplicationController
     @question = @answer.question
     @answer.destroy
     respond_to do |format|
-      format.html { redirect_to @question, alert: "Answer was successfully destroyed." }
+      format.html { redirect_to @question, alert: "Réponse supprimée." }
       format.json { head :no_content }
     end
   end
@@ -71,7 +71,7 @@ class AnswersController < ApplicationController
       @vote = current_user.votes.create(answer_id: params[:id], note: params[:note])
     end
     respond_to do |format|
-      format.html { redirect_to (@vote.answer.question), notice: "Vote successfully saved." }
+      format.html { redirect_to (@vote.answer.question), notice: "Vote enrégistré." }
       format.json { render :show, status: :created, location: @vote }
     end
   end

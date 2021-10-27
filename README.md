@@ -11,7 +11,6 @@ Things you may want to cover:
 
 - Devise
 - Fonction de message
-- Ajax
 - Jquery
 - Notifications with Toast
 - Bootstrap

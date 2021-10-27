@@ -13,6 +13,8 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_many :votes, dependent: :destroy
+  has_many :messages, dependent: :destroy
+  has_many :jobs, dependent: :destroy
   mount_uploader :picture, ImageUploader
   
 
@@ -22,7 +24,7 @@ class User < ApplicationRecord
   end
 
   def set_default_avatar!
-    path = File.join(Rails.root, 'public/img', "user#{rand(1..2).to_s}.png")
+    path = File.join(Rails.root, 'public/img', "user#{rand(1..8).to_s}.png")
     File.open(path) do |f|
       self.picture = f
     end
