@@ -39,6 +39,7 @@ gem 'cloudinary'
 gem 'punching_bag'
 gem 'i18n_generators'
 gem 'devise-i18n'
+gem 'rails_admin-i18n'
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 

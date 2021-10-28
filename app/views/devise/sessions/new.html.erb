@@ -13,7 +13,7 @@
         <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
             <div class="mb-3">
               <%= f.label I18n.t('activerecord.attributes.user.email'), class:"form-label" %>
-              <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"form-control", ariaDescribedby:"emailHelp" %>
+              <%= f.email_field :email, placeholder:"Entrez votre adresse email", autofocus: true, autocomplete: "email", class:"form-control", ariaDescribedby:"emailHelp" %>
               <div id="emailHelp" class="form-text text-danger"><%= alert %></div>
             </div>
             <div class="mb-3">
@@ -21,7 +21,7 @@
                 <%= f.label I18n.t('activerecord.attributes.user.password'), class:"form-label" %>
                 <%= link_to I18n.t('devise.shared.links.forgot_your_password'), new_user_password_path, class:"text-decoration-none" %>
               </div>
-              <%= f.password_field :password, autocomplete: "current-password", class:"form-control" %>
+              <%= f.password_field :password, placeholder:"Entrez votre mot de passe", autocomplete: "current-password", class:"form-control" %>
             </div>
             <% if devise_mapping.rememberable? %>
               <div class="mb-3 form-check">

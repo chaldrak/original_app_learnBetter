@@ -87,6 +87,8 @@ fr:
         unconfirmed_email: E-mail non confirmé  #g
         university: Université  #g
         votes: Votes  #g
+        jobs: Travaux  #g
+        messages: messages  #g
 
       vote:
         answer: :activerecord.models.answer  #g

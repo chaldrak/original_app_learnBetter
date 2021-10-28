@@ -14,20 +14,20 @@ module QuestionsHelper
     elsif during/(60*60) == 0
       Time.at(during).utc.strftime("%M min")
     elsif during/(60*60*24) == 0
-      Time.at(during).utc.strftime("%H hours")
+      Time.at(during).utc.strftime("%H heures")
     elsif during/(60*60*24*30) == 0
-      Time.at(during).utc.strftime("%d days")
+      Time.at(during).utc.strftime("%d jours")
     else
-      Time.at(during).utc.strftime("%m month")
+      Time.at(during).utc.strftime("%m mois")
     end
   end
 
   def day_ago_converter(date)
     created_date = date.to_date
     if created_date == Date.today
-      'today'
+      "aujourd'hui"
     elsif created_date == Date.yesterday
-      'yesterday'
+      'hier'
     elsif Date.today - created_date > (1/1)
       created_date.strftime("%F")
     end

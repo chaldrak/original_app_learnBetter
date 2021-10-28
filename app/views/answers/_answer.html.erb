@@ -70,7 +70,7 @@
             <p class="fw-bold mt-4 mb-2"><%= I18n.t('others.messages.your_comment') %></p>
               <%= form_with(model: [answer, answer.comments.build], local: true) do |form| %>
                 <div class="mb-3">
-                  <%= form.text_area :content, rows:"3", class:"form-control" %>
+                  <%= form.text_area :content, rows:"3", class:"form-control", placeholder:"Ajoutez un commentaire" %>
                 </div>
                 <%= form.submit I18n.t('others.button.post_your_comment'), class:"btn btn-primary" %>
               <% end %>

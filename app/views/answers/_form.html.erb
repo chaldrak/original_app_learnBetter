@@ -8,7 +8,7 @@
     <%= form.hidden_field :picture_cache %>
   </div>
   <div class="mb-3">
-    <%= form.text_area :content, rows:"3", class:"form-control" %>
+    <%= form.text_area :content, rows:"3", class:"form-control", placeholder:"Ecrivez votre réponse ici..." %>
   </div>
   <%= form.submit I18n.t('others.button.post_your_answer'), class:"btn btn-primary" %>
 <% end %>

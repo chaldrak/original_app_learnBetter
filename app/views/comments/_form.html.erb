@@ -11,7 +11,7 @@
   <%= form_with(model: [@answer, @answer.comments.build], local: true) do |form| %>
     <div id="emailHelp" class="form-text text-danger"><%= render "devise/shared/error_messages", resource: @comment %></div>
     <div class="mb-3">
-      <%= form.text_area :content, rows:"3", class:"form-control" %>
+      <%= form.text_area :content, rows:"3", class:"form-control", placeholder:"Ajoutez votre commentaire ici..." %>
     </div>
     <%= form.submit I18n.t('others.messages.post_your_comment'), class:"btn btn-primary" %>
   <% end %>

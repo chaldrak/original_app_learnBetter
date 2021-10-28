@@ -14,15 +14,15 @@
           <div id="emailHelp" class="form-text text-danger"><%= render "devise/shared/error_messages", resource: resource %></div>
           <div class="mb-3">
             <%= f.label I18n.t('activerecord.attributes.user.full_name'), class:"form-label" %>
-            <%= f.text_field :name, autofocus: true, autocomplete: "name", class:"form-control" %>
+            <%= f.text_field :name, autofocus: true, autocomplete: "name", placeholder:"Saissisez votre nom et prénom", class:"form-control" %>
           </div>
           <div class="mb-3">
             <%= f.label I18n.t('activerecord.attributes.user.email'), class:"form-label" %>
-            <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"form-control" %>
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder:"Entrez une adresse email valide", class:"form-control" %>
           </div>
           <div class="mb-3">
             <%= f.label I18n.t('activerecord.attributes.user.password'), class:"form-label" %>
-            <%= f.password_field :password, autocomplete: "new-password", class:"form-control", ariaDescribedby:"passwordHelp" %>
+            <%= f.password_field :password, autocomplete: "new-password", placeholder:"Entrez votre mot de passe", class:"form-control", ariaDescribedby:"passwordHelp" %>
             <div id="passwordHelp" class="form-text">
               <% if @minimum_password_length %>
               <em>(<%= @minimum_password_length %> <%= I18n.t('devise.passwords.edit.characters_minimum')%>)</em>
@@ -31,7 +31,7 @@
           </div>
           <div class="mb-3">
             <%= f.label I18n.t('activerecord.attributes.user.password_confirmation'), class:"form-label" %>
-            <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"form-control", ariaDescribedby:"passwordHelp" %>
+            <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder:"Confirmez votre mot de passe", class:"form-control", ariaDescribedby:"passwordHelp" %>
           </div>
           <div class="d-flex justify-content-between">
               <%= f.submit I18n.t('devise.shared.links.sign_up'), class:"btn btn-primary" %>
