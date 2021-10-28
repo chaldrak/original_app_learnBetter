@@ -4,12 +4,14 @@ class AnswersController < ApplicationController
   # GET /answers or /answers.json
   def index
     @answers = Answer.all
-    redirect_to root_path
+    @question = Question.find(params[:question_id])
+    redirect_to question_path(@question)
   end
 
   # GET /answers/1 or /answers/1.json
   def show
-    redirect_to root_path
+    @question = Question.find(params[:question_id])
+    redirect_to question_path(@question)
   end
 
   # GET /answers/new

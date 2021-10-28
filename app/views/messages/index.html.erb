@@ -98,7 +98,7 @@
           <!-- Typing area -->
           <%= form_with(model: [@conversation, @message], class:"bg-light border rounded-pill") do |form| %>
             <div class="input-group">
-              <%= form.text_field :content, placeholder:"Type a message", aria_describedby:"button-addon2", class:"form-control rounded-pill border-0 py-4 bg-light" %>
+              <%= form.text_field :content, placeholder:"Ecrire un message", aria_describedby:"button-addon2", class:"form-control rounded-pill border-0 py-4 bg-light" %>
               <%= form.text_field :user_id, value: current_user.id, type: "hidden"  %>
 
               <div class="input-group-append my-auto" style="margin: 15px;">

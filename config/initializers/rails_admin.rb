@@ -14,7 +14,7 @@ RailsAdmin.config do |config|
   ## == Pundit ==
   # config.authorize_with :pundit
   config.authorize_with do
-    redirect_to main_app.root_path unless current_user.is_admin?
+    redirect_to main_app.root_path, alert: "Vous ne disposez pas du rôle d'administrateur" unless current_user.is_admin?
   end
 
   ## == PaperTrail ==

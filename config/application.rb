@@ -11,7 +11,7 @@ module OriginalAppLearnBetter
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.2
     config.time_zone = "West Central Africa"
-    config.i18n.default_locale = :en
+    config.i18n.default_locale = :fr
 
     config.generators do |g|
       g.test_framework :rspec,

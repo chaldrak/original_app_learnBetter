@@ -6,9 +6,9 @@ RSpec.describe "Questions", type: :system do
 
     context "Lors de la création d'une question" do
       it "Sans le login" do
-        visit root_path
+        visit questions_path
         click_on "Poser une Question"
-        expect(page).to have_content("You need to sign in or sign up before continuing.")  
+        expect(page).to have_content("Vous devez vous connecter ou vous enregistrer pour continuer.")  
       end
     end
 
@@ -16,7 +16,7 @@ RSpec.describe "Questions", type: :system do
       it "On peut voir les questions" do
         user = FactoryBot.create(:user)
         question = FactoryBot.create(:question, user: user)
-        visit root_path
+        visit questions_path
         expect(page).to have_content("Many variations on the standard lorem ipsum text exist")  
       end
     end
@@ -25,7 +25,7 @@ RSpec.describe "Questions", type: :system do
       it "On peut voir les détails d'une question" do
         user = FactoryBot.create(:user)
         question = FactoryBot.create(:question, user: user)
-        visit root_path
+        visit questions_path
         click_on "Many variations on the standard lorem ipsum text exist"
         expect(page).to have_content("Many variations on the standard lorem ipsum text exist")
         expect(page).to have_content("test_name")
@@ -36,7 +36,7 @@ RSpec.describe "Questions", type: :system do
       it "On peut voir les détails d'une question" do
         user = FactoryBot.create(:user)
         question = FactoryBot.create(:question, user: user)
-        visit root_path
+        visit questions_path
         click_on "Many variations on the standard lorem ipsum text exist"
         expect(page).to have_content("Many variations on the standard lorem ipsum text exist")
         expect(page).to have_content("test_name")
@@ -48,7 +48,7 @@ RSpec.describe "Questions", type: :system do
         user = FactoryBot.create(:user)
         question = FactoryBot.create(:question, user: user)
         comment = FactoryBot.create(:comment, content: "My question comment", user: user, question: question)
-        visit root_path
+        visit questions_path
         click_on "Many variations on the standard lorem ipsum text exist"
         expect(page).to have_content("My question comment")
       end
@@ -60,7 +60,7 @@ RSpec.describe "Questions", type: :system do
         question = FactoryBot.create(:question, user: user)
         answer = FactoryBot.create(:answer, user: user, question: question)
         question.update(solved: true, answer_id: answer.id)
-        visit root_path
+        visit questions_path
         click_on "Résolues"
         expect(page).to have_content("Many variations on the standard lorem ipsum text exist")
         click_on "Non résolues"
@@ -72,7 +72,7 @@ RSpec.describe "Questions", type: :system do
       it "On peut rechercher une question par son contenu" do
         user = FactoryBot.create(:user)
         question = FactoryBot.create(:question, user: user)
-        visit root_path
+        visit questions_path
         fill_in "quizz", with: "varia\n"
         expect(page).to have_content("Résultats trouvés pour 'varia'")
         expect(page).to have_content("Many variations on the standard lorem ipsum text exist")
