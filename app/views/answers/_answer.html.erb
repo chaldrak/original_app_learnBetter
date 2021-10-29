@@ -56,8 +56,8 @@
     <%= render answer.comments %>
 
     <hr class="mt-2">
-    <a style="cursor: pointer" class="text-decoration-none" data-bs-toggle="modal" data-bs-target="#addCommentAnswer<%= answer.id %>"><%= I18n.t('others.button.add_a_comment') %></a>
-    
+    <a style="cursor: pointer" class="text-decoration-none" data-bs-toggle="modal" data-bs-target="#addCommentAnswer<%= answer.id %>"><%= I18n.t('others.button.add_a_comment') if current_user %></a>
+    <a style="cursor: pointer" disabled class="text-decoration-none" title="Vous devez vous connecter ou vous enregistrer pour continuer."><%= I18n.t('others.button.add_a_comment') unless current_user %></a>
     
     <div class="modal fade" id="addCommentAnswer<%= answer.id %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered">

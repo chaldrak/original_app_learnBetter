@@ -8,7 +8,9 @@
     <%= form.hidden_field :picture_cache %>
   </div>
   <div class="mb-3">
-    <%= form.text_area :content, rows:"3", class:"form-control", placeholder:"Ecrivez votre réponse ici..." %>
+    <%= form.text_area :content, rows:"3", class:"form-control", placeholder:"Ecrivez votre réponse ici...", title:"Vous devez vous connecter ou vous enregistrer pour continuer." %>
+    <div id="emailHelp" class="form-text text-danger"><%= "Vous devez vous connecter ou vous enregistrer pour continuer." unless current_user %></div>
   </div>
-  <%= form.submit I18n.t('others.button.post_your_answer'), class:"btn btn-primary" %>
+  <%= form.submit I18n.t('others.button.post_your_answer'), class:"btn btn-primary" if current_user %>
+  <%= form.submit I18n.t('others.button.post_your_answer'), class:"btn btn-primary disabled" unless current_user %>
 <% end %>
