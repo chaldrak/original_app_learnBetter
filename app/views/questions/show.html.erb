@@ -66,29 +66,29 @@
             <p class="text-center">
 
               <% if @vote.present? %>
-                <%= link_to vote_path(id: @vote.id, note: 1), method: :put, class:"btn", title:"Vote up" do %>
+                <%= link_to vote_path(id: @vote.id, note: 1), method: :put, class:"btn", title:"Cette question m'a été utile" do %>
                   <i class="fas fa-sort-up h3 text-secondary"></i>
                 <% end %><br>
-                <span> <%= link_to "#{@question.votes.sum(:note)}", vote_path(id: @vote.id, note: 0), method: :put, class:"text-decoration-none text-dark", title:"Cancel vote" %></span><br>
-                <%= link_to vote_path(id: @vote.id, note: -1), method: :put, class:"btn", title:"Vote down" do %>
+                <span> <%= link_to "#{@question.votes.sum(:note)}", vote_path(id: @vote.id, note: 0), method: :put, class:"text-decoration-none text-dark", title:"Annulez votre vote" %></span><br>
+                <%= link_to vote_path(id: @vote.id, note: -1), method: :put, class:"btn", title:"Cette question ne m'a pas été utile" do %>
                   <i class="fas fa-sort-down h3 text-secondary"></i>
                 <% end %><br>
               <% else %>
-                <%= link_to votes_path(question_id: @question.id, note: 1), method: :post, class:"btn", title:"Vote up" do %>
+                <%= link_to votes_path(question_id: @question.id, note: 1), method: :post, class:"btn", title:"Cette question m'a été utile" do %>
                   <i class="fas fa-sort-up h3 text-secondary"></i>
                 <% end %><br>
                 <span> <%= @question.votes.sum(:note) %></span><br>
-                <%= link_to votes_path(question_id: @question.id, note: -1), method: :post, class:"btn", title:"Vote down" do %>
+                <%= link_to votes_path(question_id: @question.id, note: -1), method: :post, class:"btn", title:"Cette question ne m'a pas été utile" do %>
                   <i class="fas fa-sort-down h3 text-secondary"></i>
                 <% end %><br>
               <% end %>
 
               <% if @favorite.present? %>
-                <%= link_to favorite_path(@favorite), method: :delete, class:"" do %>
+                <%= link_to favorite_path(@favorite), method: :delete, title:"Retirez cette question de vos favoris" do %>
                   <i class="fas fa-bookmark text-warning"></i>
                 <% end %>
               <% else %>
-                <%= link_to favorites_path(question_id: @question.id), method: :post, class:"" do %>
+                <%= link_to favorites_path(question_id: @question.id), method: :post, title:"Ajoutez cette question à vos favoris" do %>
                   <i class="fas fa-bookmark text-secondary"></i>
                 <% end %>
               <% end %>

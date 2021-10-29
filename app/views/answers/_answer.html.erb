@@ -3,18 +3,18 @@
   <div class="col-sm-1">
     <p class="text-center">
       
-      <%= link_to vote_answer_answer_path(answer, note: 1), method: :post, class:"btn", title:"Vote up" do %>
+      <%= link_to vote_answer_answer_path(answer, note: 1), method: :post, class:"btn", title:"Cette réponse m'a aidé" do %>
         <i class="fas fa-sort-up h3 text-secondary"></i>
       <% end %><br>
 
-      <span> <%= link_to "#{answer.votes.sum(:note)}", vote_answer_answer_path(answer, note: 0), method: :post, class:"text-decoration-none text-dark", title:"Cancel vote" %></span><br>
+      <span> <%= link_to "#{answer.votes.sum(:note)}", vote_answer_answer_path(answer, note: 0), method: :post, class:"text-decoration-none text-dark", title:"Annulez votre vote" %></span><br>
       
-      <%= link_to vote_answer_answer_path(answer, note: -1), method: :post, class:"btn", title:"Vote down" do %>
+      <%= link_to vote_answer_answer_path(answer, note: -1), method: :post, class:"btn", title:"Cette réponse ne m'a pas aidé" do %>
         <i class="fas fa-sort-down h3 text-secondary"></i>
       <% end %><br>
 
       <% if current_user == @question.user %>
-        <%= link_to set_good_answer_question_path(@question, answer_id: answer.id), method: :patch, data: {confirm: "Êtes-vous sûr de vouloir enrégistrer cette réponse comme correcte ?"} do %>
+        <%= link_to set_good_answer_question_path(@question, answer_id: answer.id), title:"Choisir cette réponse comme réponse adaptée à ma question", method: :patch, data: {confirm: "Êtes-vous sûr de vouloir enrégistrer cette réponse comme correcte ?"} do %>
           <% if @question.solved and @question.answer_id == answer.id %>
             <i class="fas fa-check h3 text-success"></i>
           <% else %>
