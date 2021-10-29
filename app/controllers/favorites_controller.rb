@@ -25,7 +25,7 @@ class FavoritesController < ApplicationController
 
     respond_to do |format|
       if @favorite.save
-        format.html { redirect_to @favorite.question, notice: "Cette Question a été ajoutée à vos favoris." }
+        format.html { redirect_to @favorite.question, notice: "Cette question a été ajoutée à vos favoris." }
         format.json { render :show, status: :created, location: @favorite }
       end
     end
@@ -50,7 +50,7 @@ class FavoritesController < ApplicationController
     favorite = current_user.favorites.find(params[:id]).destroy
     respond_to do |format|
       
-      format.html { redirect_to question, alert: "Cette Question est retirée de vos favoris." }
+      format.html { redirect_to question, alert: "Cette question est retirée de vos favoris." }
       format.json { head :no_content }
     end
   end

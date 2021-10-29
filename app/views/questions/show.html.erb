@@ -128,7 +128,7 @@
             <%= render @question.comments %>
 
             <a style="cursor: pointer" disabled class="text-decoration-none" title="Vous devez vous connecter ou vous enregistrer pour continuer."><%= I18n.t('others.button.add_a_comment') unless current_user %></a>
-            <a style="cursor: pointer" class="text-decoration-none" data-bs-toggle="modal" data-bs-target="#addComment"><%= I18n.t('others.button.add_a_comment') if current_user%></a>
+            <a style="cursor: pointer" id="comment_question" class="text-decoration-none" data-bs-toggle="modal" data-bs-target="#addComment"><%= I18n.t('others.button.add_a_comment') if current_user%></a>
           </div>
       </div>
       
