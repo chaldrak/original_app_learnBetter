@@ -1,5 +1,5 @@
 <p class="fw-bold mt-4 mb-2"><%= I18n.t('others.messages.your_answer') %></p>
-<%= form_with(model: [@question, @question.answers.build], local: true) do |form| %>
+<%= form_with(model: [@question, @question.answers.build]) do |form| %>
   <div id="emailHelp" class="form-text text-danger"><%= render "devise/shared/error_messages", resource: @answer %></div>
   <div class="mb-3">
     <%= form.label I18n.t('others.messages.choose_a_picture'), class:"form-label" %>

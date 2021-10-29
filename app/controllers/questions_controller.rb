@@ -57,6 +57,7 @@ class QuestionsController < ApplicationController
       if @question.save
         format.html { redirect_to @question, notice: "Question postée avec succès." }
         format.json { render :show, status: :created, location: @question }
+        format.js { render :show }
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @question.errors, status: :unprocessable_entity }

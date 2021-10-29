@@ -33,7 +33,7 @@
           </div>
           <div class="modal-body">
             <p class="fw-bold mt-4 mb-2"><%= I18n.t('others.messages.your_comment') %></p>
-            <%= form_with(model: [@question, @question.comments.build], local: true) do |form| %>
+            <%= form_with(model: [@question, @question.comments.build]) do |form| %>
               <div class="mb-3">
                 <%= form.text_area :content, rows:"3", class:"form-control", placeholder:"Ajoutez un commentaire" %>
               </div>

@@ -2,11 +2,11 @@
   <div class="container-fluid">
     <div class="row mb-2">
       <div>
-        <h3 class="mb-4">Editing Answer</h3>
+        <h3 class="mb-4">Modifier votre Réponse</h3>
           <%= form_with(model: [@question, @answer], url: question_answer_path(@question, @answer), method: :put) do |form| %>
             <div id="emailHelp" class="form-text text-danger"><%= render "devise/shared/error_messages", resource: @answer %></div>
             <div class="mb-3">
-                <%= form.label "Choose a picture", class:"form-label" %>
+                <%= form.label "Choisir une image", class:"form-label" %>
                 <%= image_tag(@answer.picture.url, width: "200px", class:"mb-3") if @answer.picture && @answer.picture.url %>
                 <%= form.file_field :picture, class:"form-control" %>
                 <%= form.hidden_field :picture_cache %>
@@ -15,8 +15,8 @@
                 <%= form.text_area :content, rows:"3", class:"form-control" %>
             </div>
             <div class="d-flex justify-content-between">
-              <%= form.submit "Save Changes", class:"btn btn-primary" %>
-              <%= link_to 'Cancel', @answer.question, class:"btn btn-secondary" %>
+              <%= form.submit "Enrégistrer", class:"btn btn-primary" %>
+              <%= link_to 'Annuler', @answer.question, class:"btn btn-secondary" %>
             </div>
           <% end %>
       </div>
