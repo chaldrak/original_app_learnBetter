@@ -1,7 +1,7 @@
 <hr class="mt-2">
 <% if comment.persisted? %>
   <p class="text-secondary" style="text-align: justify;">
-    <%= comment.content %> – <span><a href="<%= user_path(comment.user) %>" class="text-decoration-none"><%= comment.user.name %></a></span> <em class="text-dark"><%= comment.created_at.strftime("%b %m '%y at %H:%M") %> </em>
+    <%= comment.content %> – <span><a href="<%= user_path(comment.user) %>" class="text-decoration-none"><%= comment.user.name %></a></span> <em class="text-dark"><%= comment.created_at.strftime("%m %b %y à %H:%M") %> </em>
     <% if comment.user == current_user %>
     <span>
       <a href="#" title="edit question" class="me-2 ms-2 text-decoration-none text-secondary" data-bs-toggle="modal" data-bs-target="#commentEdit<%= comment.id %>">
