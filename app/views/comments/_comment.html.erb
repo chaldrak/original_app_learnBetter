@@ -4,11 +4,11 @@
     <%= comment.content %> – <span><a href="<%= user_path(comment.user) %>" class="text-decoration-none"><%= comment.user.name %></a></span> <em class="text-dark"><%= comment.created_at.strftime("%m %b %y à %H:%M") %> </em>
     <% if comment.user == current_user %>
     <span>
-      <a href="#" title="edit question" class="me-2 ms-2 text-decoration-none text-secondary" data-bs-toggle="modal" data-bs-target="#commentEdit<%= comment.id %>">
+      <a href="#" title="edit question" id="comment_question_edit" class="me-2 ms-2 text-decoration-none text-secondary" data-bs-toggle="modal" data-bs-target="#commentEdit<%= comment.id %>">
         <%= I18n.t('others.button.edit') %>
       </a>
-      <%= link_to I18n.t('others.button.delete'), question_comment_path(comment.question, comment), method: :delete, data: {confirm: "This deletion is irreversible. Do you want to continue ?"}, class:"text-decoration-none text-danger" if comment.question %>
-      <%= link_to I18n.t('others.button.delete'), answer_comment_path(comment.answer, comment), method: :delete, data: {confirm: "This deletion is irreversible. Do you want to continue ?"}, class:"text-decoration-none text-danger" if comment.answer %>
+      <%= link_to I18n.t('others.button.delete'), question_comment_path(comment.question, comment), method: :delete, data: {confirm: "Cette suppression est irréversible. Voulez vous continuez ?"}, class:"text-decoration-none text-danger", id:"comment_question_delete" if comment.question %>
+      <%= link_to I18n.t('others.button.delete'), answer_comment_path(comment.answer, comment), method: :delete, data: {confirm: "Cette suppression est irréversible. Voulez vous continuez ?"}, class:"text-decoration-none text-danger" if comment.answer %>
     </span>
     <% end %>
   </p>
