@@ -1,0 +1,17 @@
+<% if @vote.present? %>
+  <%= link_to vote_path(id: @vote.id, note: 1), method: :put, class:"btn", title:"Cette question m'a été utile", remote: true do %>
+    <i class="fas fa-sort-up h3 text-secondary"></i>
+  <% end %><br>
+  <span> <%= link_to "#{@question.votes.sum(:note)}", vote_path(id: @vote.id, note: 0), method: :put, class:"text-decoration-none text-dark", title:"Annulez votre vote", remote: true %></span><br>
+  <%= link_to vote_path(id: @vote.id, note: -1), method: :put, class:"btn", title:"Cette question ne m'a pas été utile", remote: true do %>
+    <i class="fas fa-sort-down h3 text-secondary"></i>
+  <% end %><br>
+<% else %>
+  <%= link_to votes_path(question_id: @question.id, note: 1), method: :post, class:"btn", title:"Cette question m'a été utile", remote: true do %>
+    <i class="fas fa-sort-up h3 text-secondary"></i>
+  <% end %><br>
+  <span> <%= @question.votes.sum(:note) %></span><br>
+  <%= link_to votes_path(question_id: @question.id, note: -1), method: :post, class:"btn", title:"Cette question ne m'a pas été utile", remote: true do %>
+    <i class="fas fa-sort-down h3 text-secondary"></i>
+  <% end %><br>
+<% end %>

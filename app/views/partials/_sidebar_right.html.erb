@@ -6,7 +6,7 @@
           <div class="card-header bg-primary text-light">Jobs <span class="badge bg-warning text-dark">new</span></div>
           <div class="card-body text-dark">
           <h5 class="card-title text-primary"><%= Job.last.title if Job.last%></h5>
-          <p class="card-text"><%= Job.last.content if Job.last %></p>
+          <p class="card-text"><%= Job.last.content.truncate(100) if Job.last %></p>
           </div>
       </div>
       </div>
