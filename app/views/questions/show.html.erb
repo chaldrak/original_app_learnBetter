@@ -83,15 +83,7 @@
                 <% end %><br>
               <% end %>
 
-              <% if @favorite.present? %>
-                <%= link_to favorite_path(@favorite), method: :delete, title:"Retirez cette question de vos favoris" do %>
-                  <i class="fas fa-bookmark text-warning"></i>
-                <% end %>
-              <% else %>
-                <%= link_to favorites_path(question_id: @question.id), method: :post, title:"Ajoutez cette question à vos favoris" do %>
-                  <i class="fas fa-bookmark text-secondary"></i>
-                <% end %>
-              <% end %>
+              <%= render "favorites/favorite" %>
 
               <br>
               <span><%= @question.favorites.count %></span>
