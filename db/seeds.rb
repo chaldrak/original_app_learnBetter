@@ -6,7 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 admin = User.create!(
-    name: "administrateur",
+    name: "admin LearnBetter",
     email: "chaldrakus@gmail.com",
     password: "123456",
     is_admin: true,
@@ -36,21 +36,7 @@ user2 = User.create!(
     )
 end
 
-Job.create!(
-    title: Faker::Lorem.sentences(number: 1),
-    content: Faker::Lorem.paragraphs(number: 1),
-    user: admin
-)
-
-15.times do
-    Question.create!(
-        title: Faker::Lorem.question(word_count: 6),
-        content: Faker::Lorem.paragraphs,
-        user: admin
-    )
-end
-
-15.times do
+3.times do
     Question.create!(
         title: Faker::Lorem.question(word_count: 6),
         content: Faker::Lorem.paragraphs,
@@ -58,7 +44,7 @@ end
     )
 end
 
-15.times do
+3.times do
     Question.create!(
         title: Faker::Lorem.question(word_count: 6),
         content: Faker::Lorem.paragraphs,
