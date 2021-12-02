@@ -1,7 +1,7 @@
 <div class="container-fluid">
-  <div style="padding-top: 80px;width: 40%; display: table; margin: 0 auto;">
-    <div class="text-center">
-        <img src="/img/lb.jpg" alt="logo" width="200px">
+  <div style="padding-top: 100px;width: 40%; display: table; margin: 0 auto;">
+    <div class="text-center mb-4">
+        <img src="/img/logonew.jpeg" alt="logo" width="80px">
     </div>
     <%= link_to user_google_omniauth_authorize_path, method: :post, class:"border border-dark rounded-pill text-center w-100 btn btn-light mb-4" do %>
         <i class="fab fa-google text-danger"></i> <%= I18n.t('devise.shared.links.sign_in_with_google') %>
@@ -34,11 +34,6 @@
               <p><%= I18n.t('devise.shared.links.Don_t_have_an_account') %> <%= link_to I18n.t('devise.shared.links.Register'), new_user_registration_path, class:"text-decoration-none" %></p>
             </div>
         <% end %>
-        <div class="mt-2 d-flex justify-content-end ">
-          <%= render "partials/guest" %>
-          <div class="me-2"></div>
-          <%= render "partials/guest_admin" %>
-        </div>
     </div>
   </div>
 </div>
