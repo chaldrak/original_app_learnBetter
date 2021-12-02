@@ -69,7 +69,7 @@
                     <tr>
                       <td><span class="badge bg-light text-dark border border-dark"><%= answer.votes.sum(:note) %></span></td>
                       <td><a href="<%= question_path(answer.question) %>" class="text-decoration-none"><%= answer.content.truncate(100) %></a></td>
-                      <td><%= answer.created_at.strftime("%b %m '%y at %H:%M") %></td>
+                      <td><%= answer.created_at.strftime("%m %b '%y à %H:%M") %></td>
                     </tr>
                   <% end %>
                 </tbody>
@@ -82,7 +82,7 @@
                     <tr>
                       <td><span class="badge bg-light text-dark border border-dark"><%= question.votes.sum(:note) %></span></td>
                       <td><a href="<%= question_path(question) %>" class="text-decoration-none"><%= question.title.truncate(100) %></a></td>
-                      <td><%= question.created_at.strftime("%b %m '%y at %H:%M") %></td>
+                      <td><%= question.created_at.strftime("%m %b '%y à %H:%M") %></td>
                     </tr>
                   <% end %>
                 </tbody>
@@ -95,7 +95,7 @@
                     <tr>
                       <td><span class="badge bg-light text-dark border border-dark"><%= favorite.question.votes.sum(:note) %></span></td>
                       <td><a href="<%= question_path(favorite.question) %>" class="text-decoration-none"><%= favorite.question.title.truncate(100) %></a></td>
-                      <td><%= favorite.question.created_at.strftime("%b %m '%y at %H:%M") %></td>
+                      <td><%= favorite.question.created_at.strftime("%m %b '%y à %H:%M") %></td>
                     </tr>
                   <% end %>
                 </tbody>
