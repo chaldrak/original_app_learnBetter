@@ -11,7 +11,7 @@
             </div>
             <div class="mb-3">
               <label for="formFile" class="form-label fw-bold">Picture : </label>
-              <%= image_tag(@question.picture.url, width:"40%", alt:"picture") if @question.picture && @question.picture.url %>
+              <%= image_tag @question.picture.url, width:"40%", alt:"picture" if @question.picture && @question.picture.url %>
               <%= form.hidden_field :picture_cache %>
             </div>
             <div class="mb-3">
